@@ -2,7 +2,7 @@
 A 3d building viewer implemented with threejs 7.1 and bootstrap 2.3.2
 
 A live demo on <a href="http://dizzyeyes.sinaapp.com">th</a>.
-[is](http://dizzyeyes.sinaapp.com)".
+[is](http://dizzyeyes.sinaapp.com).
 
 #Update
 Rearrange all the codes to an OOP manner.
