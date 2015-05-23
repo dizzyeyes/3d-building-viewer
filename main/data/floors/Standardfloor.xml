@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+	<Floor id="STANDARDFLOOR" name="标准楼层">
+    <camera pos="0,150,400" />
+		<BlockList>
+			<Block id="BOARD" name="地板">
+				<model path="./data/models/dibu.obj" type="obj" />
+				<position px="0" py="-2" pz="50" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="1" py="1" pz="1" />
+				<texture color="9710926" />
+				<info>标准楼层</info>
+			</Block>
+			<Block id="BLOCK1" name="区块1">
+				<model path="./data/models/bai01.obj" type="obj" />
+				<position px="-109.057" py="0" pz="53.254999999999995" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="1" py="10" pz="1" />
+				<texture color="8107234" />
+				<info>左边第一块</info>
+			</Block>
+			<Block id="BLOCK2" name="区块2">
+				<model path="./data/models/bai02.obj" type="obj" />
+				<position px="108.328" py="0" pz="75.491" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="1" py="10" pz="1" />
+				<texture color="11286081" />
+				<info>右边第一块</info>
+			</Block>
+			<Block id="BLOCK3" name="区块3">
+				<model path="./data/models/bai03.obj" type="obj" />
+				<position px="-73.975" py="0" pz="74.508" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="1" py="10" pz="1" />
+				<texture color="5445293" />
+				<info>方块第一个</info>
+			</Block>
+			<Block id="BLOCK4" name="区块4">
+				<model path="./data/models/lv01.obj" type="obj" />
+				<position px="-40.147" py="0" pz="74.732" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="1" py="10" pz="1" />
+				<texture color="16445422" />
+				<info>第二块</info>
+			</Block>
+			<Block id="BLOCK5" name="第五块">
+				<model path="./data/models/lan01.obj" type="obj" />
+				<position px="-4.424" py="0" pz="75.023" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="1" py="10" pz="1" />
+				<texture color="6721090" />
+				<info>呵呵，蓝色的</info>
+			</Block>
+			<Block id="BLOCK6" name="黄色的">
+				<model path="./data/models/huang.obj" type="obj" />
+				<position px="31.179" py="0" pz="74.598" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="1" py="10" pz="1" />
+				<texture color="8729040" />
+				<info>黄色</info>
+			</Block>
+			<Block id="BLOCK7" name="橘色">
+				<model path="./data/models/ju.obj" type="obj" />
+				<position px="66.382" py="0" pz="72.495" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="1" py="10" pz="1" />
+				<texture color="16431961" />
+				<info>橘色</info>
+			</Block>
+			<Block id="BLOCK8" name="粉">
+				<model path="./data/models/fen.obj" type="obj" />
+				<position px="122.048" py="0" pz="13.259999999999998" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="1" py="2" pz="1" />
+				<texture color="2158164" />
+				<info>高&amp;quot;冷&amp;quot;</info>
+			</Block>
+			<Block id="BLOCK9" name="蓝2">
+				<model path="./data/models/lan2.obj" type="obj" />
+				<position px="-33.934938410270554" py="2" pz="23.502504383899435" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="1" py="10" pz="1" />
+				<texture color="6859851" />
+				<info>蓝色的天空</info>
+			</Block>
+			<Block id="LV2" name="绿色2">
+				<model path="./data/models/lv2.obj" type="obj" />
+				<position px="-4.129877176325813" py="2" pz="23.545355467998036" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="1" py="10" pz="1" />
+				<texture color="14869438" />
+				<info>呵呵绿油油</info>
+			</Block>
+		</BlockList>
+		<MPointList>
+			<MPoint id="MPOINT1" name="测点1" type="temperature">
+				<model path="./data/models/mpoint.obj" type="obj" />
+				<position px="-33.265895423239286" py="18.592999696731567" pz="82.31809716810594" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="0.01" py="0.01" pz="0.01" />
+				<texture color="1621757" />
+				<info>测点1：温度测点</info>
+			</MPoint>
+			<MPoint id="MPOINT2" name="测点2" type="huminity">
+				<model path="./data/models/mpoint.obj" type="obj" />
+				<position px="2.4613458983073766" py="18.592999696731532" pz="75.96730354638925" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="0.01" py="0.01" pz="0.01" />
+				<texture color="16485369.79083283" />
+				<info>呵呵</info>
+			</MPoint>
+			<MPoint id="MPOINT3" name="测点4" type="unkown">
+				<model path="./data/models/dibu.obj" type="obj" />
+				<position px="62.19759100799445" py="18.592999696731567" pz="77.680079795067" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="0.01" py="0.01" pz="0.01" />
+				<texture color="10613360.789269362" />
+				<info>未知的测点。。</info>
+			</MPoint>
+		</MPointList>
+		<BrandList>
+			<Brand id="BRAND1" name="肯德基">
+				<model path="./data/models/brand.obj" type="obj" />
+				<position px="-8.944" py="0" pz="99.285" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="1" py="1" pz="1" />
+				<texture color="7064486" />
+				<image path="./data/images/kfc.jpg" />
+				<info>来买鸡块</info>
+			</Brand>
+			<Brand id="BRAND2" name="鞋袜专门卖">
+				<model path="./data/models/brand.obj" type="obj" />
+				<position px="31.144" py="0" pz="98.24799999999999" />
+				<rotation px="0" py="0" pz="0" />
+				<scale px="1" py="1" pz="1" />
+				<texture color="7307266" />
+				<image path="./data/images/nike.jpg" />
+				<info>呵呵</info>
+			</Brand>
+		</BrandList>
+		<floorInfo>标准楼层</floorInfo>
+	</Floor>
+	

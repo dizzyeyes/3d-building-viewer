@@ -1,0 +1,149 @@
+<Floor id="FLOORDEMO" name="DEMO楼层彩色">
+    <camera pos="-150,150,450" />
+    <BlockList>
+        <Block id="BLOCK1" name="地板">
+            <model path="./data/models/dibu.obj" type="obj" />
+            <position px="0" py="-2" pz="0" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="1" pz="1" />
+            <texture color="0xBDD0DE" />
+            <info>我是地板</info>
+        </Block>
+        <Block id="BLOCK2" name="bai01">
+            <model path="./data/models/bai01.obj" type="obj" />
+            <position px="-105" py="0" pz="0" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="10" pz="1" />
+            <texture color="0xE7E7E7" />
+            <info>左边第一块</info>
+        </Block>
+        <Block id="BLOCK3" name="bai02">
+            <model path="./data/models/bai02.obj" type="obj" />
+            <position px="105" py="0" pz="20" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="10" pz="1" />
+            <texture color="0xE7E7E7" />
+            <info>右边第一块</info>
+        </Block>
+        <Block id="BLOCK4" name="bai03">
+            <model path="./data/models/bai03.obj" type="obj" />
+            <position px="-72" py="0" pz="20" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="10" pz="1" />
+            <texture color="0xE7E7E7" />
+            <info>方块第一块</info>
+        </Block>
+        <Block id="BLOCK5" name="lv01">
+            <model path="./data/models/lv01.obj" type="obj" />
+            <position px="-40" py="0" pz="20" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="10" pz="1" />
+            <texture color="0x8AD59B" />
+            <info>方块第二块</info>
+        </Block>
+        <Block id="BLOCK6" name="lan01">
+            <model path="./data/models/lan01.obj" type="obj" />
+            <position px="-5" py="0" pz="20" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="10" pz="1" />
+            <texture color="0x83AFCE" />
+            <info>方块第三块</info>
+        </Block>
+        <Block id="BLOCK7" name="huang">
+            <model path="./data/models/huang.obj" type="obj" />
+            <position px="30" py="0" pz="20" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="10" pz="1" />
+            <texture color="0xDADD89" />
+            <info>其实我不黄</info>
+        </Block>
+        <Block id="BLOCK8" name="ju">
+            <model path="./data/models/ju.obj" type="obj" />
+            <position px="65" py="0" pz="20" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="10" pz="1" />
+            <texture color="0xC9884F" />
+            <info>为毛叫菊。。其实我是橙</info>
+        </Block>
+        <Block id="BLOCK9" name="lan2">
+            <model path="./data/models/lan2.obj" type="obj" />
+            <position px="-40" py="0" pz="-20" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="10" pz="1" />
+            <texture color="0x83AFCE" />
+            <info>蓝蓝的天上白云飘</info>
+        </Block>
+        <Block id="BLOCK10" name="lv2">
+            <model path="./data/models/lv2.obj" type="obj" />
+            <position px="0" py="0" pz="-20" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="10" pz="1" />
+            <texture color="0x8AD59B" />
+            <info>白云下面绿草飘</info>
+        </Block>
+        <Block id="BLOCK11" name="fen">
+            <model path="./data/models/fen.obj" type="obj" />
+            <position px="120" py="0" pz="-40" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="2" pz="1" />
+            <texture color="0xD176BF" />
+            <info>就我最"高"冷</info>
+        </Block>
+    </BlockList>
+    <MPointList>
+        <MPoint id="MPOINT1" name="温度测点1" type="temperature">
+            <model path="./data/models/mpoint.obj" type="obj" />
+            <position px="110" py="25" pz="20" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="0.01" py="0.01" pz="0.01" />
+            <texture color="0xffff00" />
+            <info>温度测点</info>
+        </MPoint>
+        <MPoint id="MPOINT2" name="湿度测点1" type="humidity">
+            <model path="./data/models/mpoint.obj" type="obj" />
+            <position px="100" py="25" pz="20" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="0.01" py="0.01" pz="0.01" />
+            <texture color="0x00ffff" />
+            <info>湿度测点</info>
+        </MPoint>
+        <MPoint id="MPOINT3" name="温度测点2" type="temperature">
+            <model path="./data/models/mpoint.obj" type="obj" />
+            <position px="10" py="25" pz="20" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="0.01" py="0.01" pz="0.01" />
+            <texture color="0xff00ff" />
+            <info>温度测点</info>
+        </MPoint>
+    </MPointList>
+    <BrandList>
+        <Brand id="BRAND1" name="nike专卖店">
+            <model path="./data/models/brand.obj" type="obj" />
+            <position px="10" py="8" pz="40" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="1" pz="1" />
+            <texture color="0xffffff" />
+            <image path="./data/images/nike.jpg" />
+            <info>来，快来买衣服啊~~</info>
+        </Brand>
+        <Brand id="BRAND2" name="肯德基">
+            <model path="./data/models/brand.obj" type="obj" />
+            <position px="100" py="8" pz="40" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="1" pz="1" />
+            <texture color="0xffffff" />
+            <image path="./data/images/kfc.jpg" />
+            <info>外带全家桶，我擦我饿了。！！</info>
+        </Brand>
+    </BrandList>
+    <GroupList>
+        <Group id="1" name="区块" list="BLOCK1;BLOCK2;BLOCK3" info="区块，默认分组" />
+        <Group id="2" name="测点" list="MPOINT1;MPOINT2;MPOINT3" info="测点，默认分组" />
+        <Group id="3" name="广告牌" list="BRAND1;BRAND2" info="广告牌，默认分组，其实没啥用的一组" />
+        <Group id="4" name="温度测点" list="MPOINT1;MPOINT3" info="温度测点组，可以自定义" />
+        <Group id="5" name="湿度测点" list="MPOINT2" info="湿度测点组，可以自定义" />
+        <Group id="6" name="子区域1" list="BLOCK2;MPOINT1;MPOINT2" info="子区域1，可以自定义" />
+        <Group id="7" name="子区域2" list="BLOCK3;MPOINT3" info="子区域2，可以自定义" />
+    </GroupList>
+    <floorInfo>FloorDemo楼层信息</floorInfo>
+</Floor>

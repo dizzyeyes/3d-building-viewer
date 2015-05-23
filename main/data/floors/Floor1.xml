@@ -1,0 +1,50 @@
+<Floor id="FLOOR1" name="一楼">
+    <camera pos="-150,150,450" />
+    <BlockList>
+        <Block id="BLOCK1" name="地板">
+            <model path="./data/models/dibu.obj" type="obj" />
+            <position px="0" py="0" pz="0" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="1" pz="1" />
+            <texture color="0x00ffff" />
+            <info>我是地板</info>
+        </Block>
+        <Block id="BLOCK2" name="nike专卖店">
+            <model path="./data/models/nike.obj" type="obj" />
+            <position px="10" py="2" pz="10" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="1" pz="1" />
+            <texture color="0xff00df" />
+            <info>我是买衣服的</info>
+        </Block>
+    </BlockList>
+    <MPointList>
+        <MPoint id="MPOINT1" name="温度测点1" type="temperature">
+            <model path="./data/models/mpoint.obj" type="obj" />
+            <position px="10" py="10" pz="40" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="0.01" py="0.01" pz="0.01" />
+            <texture color="0x000aa0" />
+            <info>本层唯一一个测点</info>
+        </MPoint>
+    </MPointList>
+    <BrandList>
+        <Brand id="BRAND1" name="nike专卖店">
+            <model path="./data/models/brand.obj" type="obj" />
+            <position px="10" py="8" pz="40" />
+            <rotation px="0" py="0" pz="0" />
+            <scale px="1" py="1" pz="1" />
+            <texture color="0xffffff" />
+            <image path="./data/images/nike.jpg" />
+            <info>呵呵，买衣服请找我。找人请打110</info>
+        </Brand>
+    </BrandList>
+    <GroupList>
+        <Group id="1" name="区块" list="BLOCK1;BLOCK2" info="区块，默认分组" />
+        <Group id="2" name="测点" list="MPOINT1" info="测点，默认分组" />
+        <Group id="3" name="广告牌" list="BRAND1" info="广告牌，默认分组，其实没啥用的一组" />
+        <Group id="4" name="温度测点" list="MPOINT1" info="温度测点组，可以自定义" />
+        <Group id="5" name="子区域1" list="BLOCK2;MPOINT1" info="子区域划分1" />
+    </GroupList>
+    <floorInfo>1楼楼层信息</floorInfo>
+</Floor>

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>3D Building Viewer</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <style>
+            body {
+                font-family: Monospace;
+                background-color: #f0f0f0;
+                margin: 0px;
+                overflow: hidden;
+            }
+            .acc{
+                z-index:10;
+            } 
+        </style>
+    </head>
+    <body>
+
+        <script src="jquery-2.1.3.js"></script>
+        
+        <script src="libs/THREEx.KeyboardState.js"></script>
+        <script src="libs/THREEx.FullScreen.js"></script>
+        
+        <div id="bubble_tooltip">
+            <div class="bubble_top"><span></span></div>
+            <div class="bubble_middle"><span id="bubble_tooltip_content">BubleTips.</span></div>
+            <div class="bubble_bottom"></div>
+        </div>        
+        <link rel="stylesheet" href="css/bubble-tooltip.css" media="screen">
+        <script type="text/javascript" src="js/bubble-tooltip.js"></script> 
+        
+        <script type="text/javascript" src="js/menuNotice.js"></script>
+        <link href="css/menuNotice.css" rel="stylesheet" type="text/css" />
+        <div id="menuDinfo" class="menuDinfo menuDMessage" onmouseover="hideMenuD()"></div>
+        <div id="menuDerror" class="menuDerror menuDMessage" onmouseover="hideMenuD()"></div>
+        <div id="menuDwarning" class="menuDwarning menuDMessage" onmouseover="hideMenuD()"></div>
+        <div id="menuDsuccess" class="menuDsuccess menuDMessage" onmouseover="hideMenuD()"></div>
+
+                <!--bottom dock -->
+        <link href="css/docMenu.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="js/interface.js"></script>
+        <script type="text/javascript" src="js/docMenu.js"></script>
+        <div class="dock" id="dock2">
+          <div class="dock-container2">
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>导出</span><img src="icons/Export.png" alt="exportBuildingList_docm" onclick="stage.exportBuildingList_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>导出当前楼层</span><img src="icons/floorExport.png" alt="exportSingleFloor_docm" onclick="stage.exportSingleFloor_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>新建建筑物</span><img src="icons/newBuilding.png" alt="newBuilding_docm" onclick="stage.newBuilding_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>新建楼层</span><img src="icons/newFloor.png" alt="newFloor_docm" onclick="stage.newFloor_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>添加区块</span><img src="icons/newBlock.png" alt="newBlock_docm" onclick="stage.newBlock_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>添加标志牌</span><img src="icons/trademark.png" alt="newBrand_docm" onclick="stage.newBrand_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span id="mpointLabel">添加测点</span><img id="mpointLabelPic" src="icons/newMPoint.png" alt="newMPoint_docm" onclick="stage.newMPoint_docm(this) "/></a>           
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>管理分组</span><img src="icons/manageGroup.png" alt="manageGroup_docm" onclick="stage.manageGroup_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>管理区块</span><img src="icons/manageBlock.png" alt="manageBlock_docm" onclick="stage.manageBlock_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>管理测点</span><img src="icons/manageMPoint.png" alt="manageMPoint_docm" onclick="stage.manageMPoint_docm(this) "/></a> 
+          </div>
+        </div>   
+        <div class="dock" id="dock3">     
+            <div class="dock-container3">
+            <a class="dock-item3"  onmouseover="this.style.cursor='pointer'"   ><span>隐藏</span><img src="icons/show.png" alt="hideMenu_docm" onclick="stage.hideMenu_docm(this) "/></a> 
+            </div>
+        </div>
+        
+        <!-- 输入表格 -->
+        <link href="css/prettify.css" rel="stylesheet" />
+        <link href="css/bootstrap.2.1.0.css" rel="stylesheet">
+        <link href="css/switchMenu.css" rel="stylesheet">
+        <link href="css/demo.css" rel="stylesheet">
+        <script Charset="UTF-8" src="libs/bootstrap-typeahead.js"></script>
+        <script Charset="UTF-8" src="libs/mockjax.js" type="text/javascript"></script>
+        <script Charset="UTF-8" src="libs/prettify.js" type="text/javascript"></script>
+        <script Charset="UTF-8" src="js/typeMeAhead.js" type="text/javascript"></script>
+        <script Charset="UTF-8" src="js/dialogProcess.js" type="text/javascript"></script>
+        <script Charset="UTF-8" src="js/fadeInFadeOut.js" type="text/javascript"></script>
+        <link href="css/jquery.autocomplete.css" rel="stylesheet">
+        <script Charset="UTF-8" src="libs/jquery.autocomplete.js"></script>
+        <script src="libs/ui.three.js"></script>
+        
+        <div id="table_add_template" style='position: absolute; width: 340px;left: 100px; top: 400px' 
+                onmousedown="stage.isFormSelected=true;stage.controls.enabled=false;" onmouseup="stage.isFormSelected=false;stage.controls.enabled=true;"
+                onkeydown="stage.controls.enabled=false;THREEx.FullScreen.enabled=false;" onkeyup="stage.controls.enabled=true;THREEx.FullScreen.enabled=true;"
+                >
+            <form id="form_add_template" method="post" action="#" style="display: none;">
+                <div class="row" >                          
+                    <label style="text-align: center;">
+                        <button class="form_name btn btn-danger " type="button" id="title-new"  
+                            onmousedown="stage.isFormDrag=true;stage.controls.enabled=false;" 
+                            onmouseup="stage.isFormDrag=false;stage.controls.enabled=true;"
+                            onmouseover="this.style.cursor='move';">模板名称</button>
+                    </label>
+                    <div class="well span4">
+                        <label for="itemId" >ID&nbsp;&nbsp;<img id="inputIdIcon" src="" /></label>
+                        <input fromWhere="" oldid="" id="inputId" class="span4" name="itemId" type="text" placeholder="输入ID..." autocomplete="off" onchange="this.value=this.value.toUpperCase();stage.assertDuplicateId(this.value,this.fromWhere);"/>
+                        <label for="itemName" >名称&nbsp;&nbsp;<img id="inputNameIcon" src="" /></label>
+                        <input id="inputName" class="span4" name="itemName" type="text" placeholder="输入名称..." autocomplete="off"/ onchange="this.value=this.value.toUpperCase();">      
+                        <label class="labelMPointType" for="itemMPointType" >标签&nbsp;&nbsp;<img id="inputMPointTypeIcon" src="" /></label>
+                        <input id="inputMPointType" class="span4" name="itemMPointType" type="text" placeholder="输入标签" autocomplete="off" />         
+                        <span  class="labelImage" for="itemImage" style="white-space: nowrap;">贴图
+                        <input id="inputImageSelectFileCheckBox" type="checkbox" value=true onclick="dialogue.whenChecked(this,'imagePanel','inputImage');"/>本地文件
+                        <!-- <button  id="inputImageSelectFile" state=false class="btn btn-small btn-inverse" type="button" onclick="this.state=true;inputImageFake.click();" style="display: none;float: right;"><i class="icon-camera icon-white"></i></button> -->
+                        <span id="imagePanel"  style="display: none;float: right;">
+                            <span id="imagePreview"></span>
+                            <button  id="inputImageSelectFile" class="btn btn-mini btn-inverse" type="button" onclick="dialogue.toLoadImage();" ><i class="icon-picture icon-white"></i></button>
+                        </span>
+                        <img id="inputImageIcon" src="" />  
+                        </span>
+                        <!-- <input id="inputImageFake" class="span4" name="itemImage" type="file" style="display: none;" autocomplete="off" onchange="inputImage.value=this.files[0].name.toLowerCase();" />   -->
+                        <script>
+                            var materialMap;
+                            dialogue = new Dialogue();
+                            Dialogue.prototype.toClearImagePreview=function(){
+                                var iPreview=iBase.Id("imagePreview");
+                                while(iPreview.childElementCount>0)
+                                {
+                                    iPreview.removeChild(iPreview.children[0]);
+                                }
+                            }
+                            Dialogue.prototype.toLoadImage= function(){
+                                this.toClearImagePreview();                      
+                                var iPreview=iBase.Id("imagePreview");
+                                materialMap = new UI.Texture().onChange( this.imageChange );
+                                materialMap.dom.children[1].style.display="none";
+                                iPreview.appendChild(materialMap.dom);
+                                materialMap.dom.children[0].click();
+                            }
+                            Dialogue.prototype.imageChange= function(){
+                                inputImage.value=materialMap.texture.sourceFile.toLowerCase();
+                            }
+                        </script>
+                        <input id="inputImage" class="span4" name="itemImage" type="text" placeholder="*.png/jpg" autocomplete="off" />  
+                        <span class="labelModel" for="itemModel" style="white-space: nowrap;">模型文件(*.obj)
+                        <input id="inputModelSelectFileCheckBox" type="checkbox" value=true onclick="dialogue.whenChecked(this,'inputModelSelectFile','inputModel');"/>本地文件
+                        <button id="inputModelSelectFile" state=false class="btn btn-mini btn-inverse" type="button" onclick="this.state=true;inputModelFake.click();" style="display: none;float: right;"><i class="icon-file icon-white"></i></button><img id="inputModelIcon" src="" /> 
+                        </span>
+                        <input id="inputModelFake" class="span4" name="itemModel" type="file" style="display: none;" autocomplete="off" onchange="inputModel.value=this.files[0].name.toLowerCase();dialogue.assertValidModelType(iBase.Id('inputModel'));" />                     
+                        <input id="inputModel" class="span4" name="itemModel" type="text" placeholder="*.obj" autocomplete="off" onchange="this.value=this.value.toLowerCase();dialogue.assertValidModelType(this);" />                     
+                        <label for="itemInfo" >信息</label>
+                        <textarea id="inputInfo" class="span4 area" name="itemInfo" placeholder="输入信息..." ></textarea>
+                        <label style="text-align: center;">
+                        <button type="button" class="btn btn-info" onclick="dialogue.submitfun('form_add_template')">确定</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-warning" onclick="dialogue.cancelsubmitfun('form_add_template')">取消</button> 
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>        
+        
+        <!-- 管理表格模板 -->   
+        <link rel="stylesheet" href="css/bootstrap-table.css">
+        <link rel="stylesheet" href="css/bootstrap-editable.css">
+        <link rel="stylesheet" href="css/examples.css">
+        <link rel="stylesheet" href="css/group.css">
+        <script src="libs/bootstrap.min.js"></script>
+        <script src="libs/bootstrap-table.js"></script>
+        <script src="libs/bootstrap-editable.js"></script>
+        <script src="js/bootstrap-table-zh-CN.js"></script>
+        <script src="js/bootstrap-table-editable.js"></script>
+        <script src="js/table_process.js"></script>
+        <div class="container" id="table_manage" tabletype="" style='position: absolute; display: none;  left: 100px; top: 200px; width: 840px;'         
+            onmousedown="stage.isTableSelected=true;stage.controls.enabled=false;stage.curTable='title-manage';" onmouseup="stage.isTableSelected=false;stage.controls.enabled=true;"
+            onkeydown="stage.controls.enabled=false;THREEx.FullScreen.enabled=false;" onkeyup="stage.controls.enabled=true;THREEx.FullScreen.enabled=true;"
+            >
+            <div  >                          
+                <label style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="form_name btn btn-danger " type="button"  id="title-manage" 
+                        onmousedown="stage.isFormDrag=true;stage.controls.enabled=false;" 
+                        onmouseup="stage.isFormDrag=false;stage.controls.enabled=true;"
+                        onmouseover="this.style.cursor='move';">模板名称</button>        
+                    <button  id="groupClose" class="btn btn-mini btn-normal" type="button" onclick="bsTable.TableHide($table);" style="display: block;float: right;">
+                        <i class="icon-remove "></i>
+                    </button>
+                
+                </label>
+                <div class="well span10" >
+                    <div id="toolbar" >
+                        <div class="form-inline " role="form" style="float: left">
+                            <button class="btn btn-default btn-small" id="append-data" data-method="append" onclick="bsTable.TableAppend($table);">
+                                添加条目
+                            </button>
+                            <button class="btn btn-default btn-small" id="remove-data" data-method="remove" onclick="bsTable.TableRemoveSelected($table);">
+                                删除所选
+                            </button>
+                            <button class="btn btn-default btn-small" id="show-data" data-method="show" onclick="bsTable.TableHideItems($table,true);">
+                                显示
+                            </button>
+                            <button class="btn btn-default btn-small" id="hide-data" data-method="hide" onclick="bsTable.TableHideItems($table,false);">
+                                隐藏
+                            </button>
+                            <button class="btn btn-default btn-small" id="highlight-data" data-method="hightlight" onclick="bsTable.TableHighLightItems($table,true);">
+                                高亮所选
+                            </button>
+                            <button class="btn btn-default btn-small" id="chlight-data" data-method="chlight" onclick="bsTable.TableHighLightItems($table,false);">
+                                取消高亮
+                            </button>
+                        </div>
+                    </div>
+                    <table id="group-table" class="table table-striped"
+                           data-toolbar="#toolbar"
+                           data-pagination="true"
+                           data-show-export="true"
+                           data-search="true"
+                           data-search-align="right"
+                           data-show-columns="true"
+                           data-page-list="[5,10,20,50,100]"
+                           data-page-size="5"
+                           data-key-events="false"
+                            data-sort-name="id"
+                            data-click-to-select="true"
+							data-height="295"
+                            >
+                        <thead>
+                            <tr id='tr_column' >
+                                <th data-field="state" data-checkbox="true"></th>
+                                <th class="ItemID" data-field="id" data-halign="center" data-align="center" data-sortable="true" data-editable="true" data-width=350 onchange="bsTable.TableGetByRow($table,row);alert(this.value)" data-switchable="false">ID</th>
+                                <th data-field="name" data-halign="center" data-align="center" data-sortable="true" data-editable="true" >组  名</th>
+                                <th data-field="children" data-halign="center" data-align="center" data-sortable="false" data-editable="true" >信息</th>
+                                <th data-field="operate1" data-halign="center" data-align="center" data-formatter="operateFormatter1" data-events="operateEvents1" data-width=70 >编辑</th>
+                                <th data-field="operate2" data-halign="center" data-align="center" data-formatter="operateFormatter2" data-events="operateEvents2" data-width=70 >隐藏</th>
+                                <th data-field="operate3" data-halign="center" data-align="center" data-formatter="operateFormatter3" data-events="operateEvents3" data-width=70 >高亮</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script>
+        $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['zh-CN']);
+        var $table = $('#group-table');
+        function operateFormatter1(value, row, index) {
+            var iconstyle="icon-map-marker";
+            if( iBase.Id("title-manage").innerHTML=="分组管理")
+                iconstyle="icon-list";
+                
+            if(stage.params.mode_edit)
+            return [
+                '<a class="edit" href="javascript:void(0)" title="编辑">',
+                '<i class="'+iconstyle+'"></i>',
+                '</a>&nbsp;',
+                '<a class="remove" href="javascript:void(0)" title="删除">',
+                '<i class="icon-trash"></i>',
+                '</a>'
+            ].join('');
+            else
+            return [
+                '<a class="detail" href="javascript:void(0)" onmouseup="hideMsg();"  onmouseout="hideMsg();" title="浏览" >',
+                '<i class="icon-search"></i>',
+                '</a>&nbsp;',
+                '<a class="remove" href="javascript:void(0)" title="删除">',
+                '<i class="icon-trash"></i>',
+                '</a>'
+            ].join('');
+        }
+        function operateFormatter2(value, row, index) {
+            return [
+                '<a class="toshow" href="javascript:void(0)" title="显示">',
+                '<i class="icon-eye-open"></i>',
+                '</a>&nbsp;&nbsp;',
+                '<a class="tohide" href="javascript:void(0)" title="隐藏">',
+                '<i class="icon-eye-close"></i>',
+                '</a>'
+            ].join('');
+        }
+        function operateFormatter3(value, row, index) {
+            return [
+                '<a class="tohighlight" href="javascript:void(0)" title="高亮">',
+                '<i class="icon-fire"></i>',
+                '</a>&nbsp;&nbsp;',
+                '<a class="toopenlight" href="javascript:void(0)" title="开灯">',
+                '<i class="icon-refresh"></i>',
+                '</a>'
+            ].join('');
+        }
+        window.operateEvents1 = {
+            'click .detail': function (e, value, row, index) {
+                // 弹出查看分组框
+                bsTable.TableDetail(row,index);
+            },
+            'click .edit': function (e, value, row, index) {
+                // 弹出编辑框
+                bsTable.TableEdit(row,index);
+            },
+            'click .remove': function (e, value, row, index) {
+                // 直接删除
+                bsTable.TableRemoveById($table,row['id']);
+            }
+        };        
+        window.operateEvents2 = {
+            'click .toshow': function (e, value, row, index) {
+                // 显示
+                bsTable.TableHideItem(row,true);
+            },
+            'click .tohide': function (e, value, row, index) {
+                // 隐藏
+                bsTable.TableHideItem(row,false);
+            }
+        };        
+        window.operateEvents3 = {
+            'click .tohighlight': function (e, value, row, index) {
+                // 高亮
+                bsTable.TableHighLightItem(row,true);
+            },
+            'click .toopenlight': function (e, value, row, index) {
+                // 高亮
+                bsTable.TableHighLightItem(row,false);
+            }
+        };
+        </script>
+        <!-- 管理表格模板 -->
+        <!--分组子表-->
+        <script src="js/subtable_process.js"></script>
+        <div class="container" id="subtable_manage" tabletype="" style='position: absolute; display: none;  left: 100px; top: 200px; width: 760px;'         
+            onmousedown="isSubTableSelected=true;controls.enabled=false;curTable='title-manage-sub';" onmouseup="isSubTableSelected=false;controls.enabled=true;"
+            onkeydown="controls.enabled=false;THREEx.FullScreen.enabled=false;" onkeyup="controls.enabled=true;THREEx.FullScreen.enabled=true;"
+            >
+            <div  >                          
+                <label style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="form_name btn btn-danger " type="button"  id="title-manage-sub" 
+                        onmousedown="isFormDrag=true;controls.enabled=false;" 
+                        onmouseup="isFormDrag=false;controls.enabled=true;"
+                        onmouseover="this.style.cursor='move';" >模板名称</button>        
+                    <button  id="subgroupClose" class="btn btn-mini btn-normal" type="button" onclick="bsTable.subTableHide($sub_table);" style="display: block;float: right;">
+                        <i class="icon-remove "></i>
+                    </button>
+                
+                </label>
+                <div class="well span9" >
+                    <div id="toolbarsub" >
+                        <div class="form-inline " role="form-sub" style="float: left">
+                            <button class="btn btn-default btn-small" id="remove-data-sub" data-method="remove" onclick="bsTable.subTableRemoveSelected($sub_table);">
+                                删除所选
+                            </button>
+                            <button class="btn btn-default btn-small" id="show-data-sub" data-method="show" onclick="bsTable.subTableHideItems($sub_table,true);">
+                                显示
+                            </button>
+                            <button class="btn btn-default btn-small" id="hide-data-sub" data-method="hide" onclick="bsTable.subTableHideItems($sub_table,false);">
+                                隐藏
+                            </button>
+                            <button class="btn btn-default btn-small" id="highlight-data-sub" data-method="highlight" onclick="bsTable.TableHighLightItems($sub_table,true);">
+                                高亮所选
+                            </button>
+                            <button class="btn btn-default btn-small" id="chlight-data-sub" data-method="chlight" onclick="bsTable.TableHighLightItems($sub_table,false);">
+                                取消高亮
+                            </button>
+                        </div>
+                    </div>
+                    <table id="group-table-sub" class="table table-striped"
+                           data-toolbar="#toolbarsub"
+                           data-pagination="true"
+                           data-show-export="true"
+                           data-search="true"
+                           data-search-align="right"
+                           data-page-list="[5,10,20,50,100]"
+                           data-page-size="5"
+                           data-key-events="false"
+                            data-sort-name="id"
+                            data-click-to-select="true"
+							data-height="295"                            
+                            data-show-columns="true"
+                            >
+                        <thead>
+                            <tr id='sub_tr_column' >
+                                <th data-field="state" data-checkbox="true"></th>
+                                <th class="ItemID"  data-halign="center" data-align="center" data-field="id" data-sortable="true" data-editable="true" onchange="bsTable.TableGetByRow($sub_table,row);alert(this.value)"  data-switchable="false">ID</th>
+                                <th data-field="operate1" data-width=70 data-halign="center" data-align="center" data-formatter="operateFormatterSub1" data-events="operateEventsSub1">编辑</th>
+                                <th data-field="operate2" data-width=70 data-halign="center" data-align="center" data-formatter="operateFormatterSub2" data-events="operateEventsSub2">隐藏</th>
+                                <th data-field="operate3" data-width=70 data-halign="center" data-align="center" data-formatter="operateFormatterSub3" data-events="operateEventsSub3">高亮</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script>
+        var $sub_table = $('#group-table-sub');
+        function operateFormatterSub1(value, row, index) {
+            if(stage.params.mode_edit)
+            return [
+                '<a class="subedit" href="javascript:void(0)" title="编辑">',
+                '<i class="icon-map-marker"></i>',
+                '</a>&nbsp;',
+                '<a class="subremove" href="javascript:void(0)" title="删除">',
+                '<i class="icon-trash"></i>',
+                '</a>'            
+            ].join('');
+            else
+            return [
+                '<a class="subdetail" href="javascript:void(0) onmouseup="hideMsg();" onmouseout="hideMsg();" title="查看">',
+                '<i class="icon-search"></i>',
+                '</a>&nbsp;',
+                '<a class="subremove" href="javascript:void(0)" title="删除">',
+                '<i class="icon-trash"></i>',
+                '</a>'            
+            ].join('');
+        }
+        function operateFormatterSub2(value, row, index) {
+            return [        
+                '<a class="subtoshow" href="javascript:void(0)" title="显示">',
+                '<i class="icon-eye-open"></i>',
+                '</a>&nbsp;&nbsp;',
+                '<a class="subtohide" href="javascript:void(0)" title="隐藏">',
+                '<i class="icon-eye-close"></i>',
+                '</a>'                          
+            ].join('');
+        }
+        function operateFormatterSub3(value, row, index) {
+            return [   
+                '<a class="subtohighlight" href="javascript:void(0)" title="高亮">',
+                '<i class="icon-fire"></i>',
+                '</a>&nbsp;&nbsp;',
+                '<a class="subtoopenlight" href="javascript:void(0)" title="开灯">',
+                '<i class="icon-refresh"></i>',
+                '</a>'
+            ].join('');
+        }
+        window.operateEventsSub1 = {
+            'click .subdetail': function (e, value, row, index) {
+                // 弹出查看分组框
+                bsTable.TableDetail(row,index);
+            },
+            'click .subedit': function (e, value, row, index) {
+                // 弹出编辑框
+                bsTable.subTableEdit(row,index);
+            },
+            'click .subremove': function (e, value, row, index) {
+                // 直接删除
+                bsTable.subTableRemoveById($sub_table,row['id']);
+            }
+        };
+        window.operateEventsSub2 = {
+            'click .subtoshow': function (e, value, row, index) {
+                // 显示
+                bsTable.subTableHideItem(row,true);
+            },
+            'click .subtohide': function (e, value, row, index) {
+                // 隐藏
+                bsTable.subTableHideItem(row,false);
+            }
+        };        
+        window.operateEventsSub3 = {
+            'click .subtohighlight': function (e, value, row, index) {
+                // 高亮
+                bsTable.TableHighLightItem(row,true);
+            },
+            'click .subtoopenlight': function (e, value, row, index) {
+                // 高亮
+                bsTable.TableHighLightItem(row,false);
+            }
+        };
+        </script>
+        <!--分组子表-->
+        
+        
+        <link rel="stylesheet" href="css/bootstrap-menu.css" />
+        <script src="libs/bootstrap-prompts-alert.js"></script>
+        <script src="libs/bootstrap-menu.js"></script>
+        <script src="js/popUpMenu.js"></script>
+        <script src="js/popmenuProcess.js"></script>
+            
+        <link rel='stylesheet' href='css/notify/libnotify.css'/>
+        <script src="libs/humane.min.js"></script> 
+
+        <script src="js/ext_dat.gui.js"></script>
+        <script src="three.71.min.js"></script>
+        <script src="js/ext_three.js"></script>
+        
+		<script src="fonts/helvetiker_regular.typeface.js"></script>
+		<script src="fonts/optimer_regular.typeface.js"></script>
+		<script src="fonts/gentilis_regular.typeface.js"></script>
+        
+        <script src="libs/FileSaver.js"></script>
+        <script src="libs/jszip.min.js"></script>
+        <script src="libs/stats.min.js"></script>
+        <script src="libs/OBJLoader.js"></script>
+        <script src="js/ext_TransformControls.js"></script>
+        <script src="js/ext_OrbitControls.js"></script>
+        <script src="libs/CombinedCamera.js"></script>
+        <script src="libs/Projector.js"></script>
+        <script src="libs/Detector.js"></script>
+        
+        <script src="js/gui.js"></script>
+        <script src="js/Control.js"></script>
+        <script src="js/alertMsg.js"></script>
+        <script src="js/export/tools.js"></script>
+        <script src="js/edit/changeAll.js"></script>
+        <script src="js/edit/changeData.js"></script>
+        <script src="js/edit/changeScene.js"></script>
+        <script src="js/load/addBlock.js"></script>
+        <script src="js/load/addMPoint.js"></script>
+        <script src="js/load/loadfloor.js"></script>
+        <script src="js/load/xmlparser.js"></script>
+        <script src="js/classes/objList.js"></script>
+        <script src="js/classes/group.js"></script>
+        <script src="js/classes/brand.js"></script>
+        <script src="js/classes/mpoint.js"></script>
+        <script src="js/classes/block.js"></script>
+        <script src="js/classes/floor.js"></script>
+        <script src="js/classes/building.js"></script>
+        <script src="js/classes/buildinglist.js"></script>
+        <script src="js/classes/stage.js"></script>
+        
+        <script>
+        
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+ 
+            var stage= new Stage();
+            
+            stage.initBuildingDoc();
+            stage.initScene();
+            Init();
+            stage.animate();
+
+            function Init()
+            {                
+                $(document).ready(
+                    function()
+                    {
+                        $('#dock2').Fisheye(
+                            {
+                                maxWidth: 60,
+                                items: 'a',
+                                itemsText: 'span',
+                                container: '.dock-container2',
+                                itemWidth: 40,
+                                proximity: 80,
+                                alignment : 'left',
+                                valign: 'bottom',
+                                halign : 'center'
+                            }
+                        )
+                    }
+                );                
+                document.body.appendChild( stage.container );
+                
+                document.addEventListener( 'mousemove', stage.onDocumentMouseMove, false );
+                document.addEventListener( 'dblclick', stage.onDoubleClick, false );
+                document.addEventListener( 'mousedown', stage.onDocumentMouseDown, false );
+                document.addEventListener( 'mouseup', stage.onDocumentMouseUp, false );
+                
+                document.addEventListener( 'mousewheel', stage.onMouseWheel, false );
+                document.addEventListener( 'keydown', stage.onKeyDown, false );
+                document.addEventListener( 'keyup', stage.onKeyUp, false );
+                window.addEventListener( 'resize',  stage.onWindowResize, false );
+            }
+        </script>
+        <div id="JQtooltip" style="display: none;"> </div> 
+        <link rel="stylesheet" href="css/jQuery.toolTip.css" media="screen">
+        <script type="text/javascript" src="js/callJQtoolTip.js"></script> 
+    </body>    
+</html>

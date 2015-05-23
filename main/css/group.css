@@ -1,0 +1,59 @@
+#group
+{
+    /*float: left;*/
+    /*width: 297px;*/
+}
+#pop
+{
+    /*width: 340px;*/
+}
+.popBox
+{
+    width: 600px;
+}
+.icon-search {
+    background-position: -48px 0;
+    margin-right: 10px;
+}
+.icon-cog {
+    background-position: -432px 0;
+    margin-right: 10px;
+}
+.icon-trash {
+    background-position: -456px 0;
+    margin-right: 10px;
+}
+.popover-content
+{
+    padding: 9px 2px 9px 9px;
+
+}
+.editable-input input
+{
+    padding: 1px;
+    height: 25px;
+}
+.editable-buttons
+{
+    width: 0px;
+}
+.editable-buttons  button
+{
+    height:0px;
+    width: 0px;
+    padding: 0px;
+    margin: 0px;
+    visibility: hidden;
+}
+.search input
+{
+    margin-bottom: 0px;
+}
+tr td
+{
+    /*width: 100px;*/
+}
+tr td.bs-checkbox
+{
+    /*width: 20px;*/
+}
