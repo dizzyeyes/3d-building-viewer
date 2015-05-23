@@ -2,7 +2,8 @@
 A 3d building viewer implemented with threejs 7.1 and bootstrap 2.3.2
 
 #Update
-Rearrange all the codes to an OOP manner
+Rearrange all the codes to an OOP manner.
+A lot of work to do!!!
 
 # Demo
 view demo on <a href="http://dizzyeyes.sinaapp.com">this</a>.
