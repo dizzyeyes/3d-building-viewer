@@ -7,7 +7,7 @@
         <style>
             body {
                 font-family: Monospace;
-                background-color: #f000f0;
+                background-color: #f0f0f0;
                 margin: 0px;
                 overflow: hidden;
             }
@@ -44,21 +44,21 @@
         <script type="text/javascript" src="js/docMenu.js"></script>
         <div class="dock" id="dock2">
           <div class="dock-container2">
-          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>导出</span><img src="icons/Export.png" alt="exportBuildingList_docm" onclick="stage.exportBuildingList_docm(this) "/></a> 
-          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>导出当前楼层</span><img src="icons/floorExport.png" alt="exportSingleFloor_docm" onclick="stage.exportSingleFloor_docm(this) "/></a> 
-          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>新建建筑物</span><img src="icons/newBuilding.png" alt="newBuilding_docm" onclick="stage.newBuilding_docm(this) "/></a> 
-          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>新建楼层</span><img src="icons/newFloor.png" alt="newFloor_docm" onclick="stage.newFloor_docm(this) "/></a> 
-          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>添加区块</span><img src="icons/newBlock.png" alt="newBlock_docm" onclick="stage.newBlock_docm(this) "/></a> 
-          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>添加标志牌</span><img src="icons/trademark.png" alt="newBrand_docm" onclick="stage.newBrand_docm(this) "/></a> 
-          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span id="mpointLabel">添加测点</span><img id="mpointLabelPic" src="icons/newMPoint.png" alt="newMPoint_docm" onclick="stage.newMPoint_docm(this) "/></a>           
-          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>管理分组</span><img src="icons/manageGroup.png" alt="manageGroup_docm" onclick="stage.manageGroup_docm(this) "/></a> 
-          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>管理区块</span><img src="icons/manageBlock.png" alt="manageBlock_docm" onclick="stage.manageBlock_docm(this) "/></a> 
-          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>管理测点</span><img src="icons/manageMPoint.png" alt="manageMPoint_docm" onclick="stage.manageMPoint_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>导出</span><img src="icons/Export.png" alt="exportBuildingList_docm" onclick="exportBuildingList_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>导出当前楼层</span><img src="icons/floorExport.png" alt="exportSingleFloor_docm" onclick="exportSingleFloor_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>新建建筑物</span><img src="icons/newBuilding.png" alt="newBuilding_docm" onclick="newBuilding_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>新建楼层</span><img src="icons/newFloor.png" alt="newFloor_docm" onclick="newFloor_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>添加区块</span><img src="icons/newBlock.png" alt="newBlock_docm" onclick="newBlock_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>添加标志牌</span><img src="icons/trademark.png" alt="newBrand_docm" onclick="newBrand_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span id="mpointLabel">添加测点</span><img id="mpointLabelPic" src="icons/newMPoint.png" alt="newMPoint_docm" onclick="newMPoint_docm(this) "/></a>           
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>管理分组</span><img src="icons/manageGroup.png" alt="manageGroup_docm" onclick="manageGroup_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>管理区块</span><img src="icons/manageBlock.png" alt="manageBlock_docm" onclick="manageBlock_docm(this) "/></a> 
+          <a class="dock-item2"  onmouseover="this.style.cursor='pointer'"   ><span>管理测点</span><img src="icons/manageMPoint.png" alt="manageMPoint_docm" onclick="manageMPoint_docm(this) "/></a> 
           </div>
         </div>   
         <div class="dock" id="dock3">     
             <div class="dock-container3">
-            <a class="dock-item3"  onmouseover="this.style.cursor='pointer'"   ><span>隐藏</span><img src="icons/show.png" alt="hideMenu_docm" onclick="stage.hideMenu_docm(this) "/></a> 
+            <a class="dock-item3"  onmouseover="this.style.cursor='pointer'"   ><span>隐藏</span><img src="icons/show.png" alt="hideMenu_docm" onclick="hideMenu_docm(this) "/></a> 
             </div>
         </div>
         
@@ -78,68 +78,67 @@
         <script src="libs/ui.three.js"></script>
         
         <div id="table_add_template" style='position: absolute; width: 340px;left: 100px; top: 400px' 
-                onmousedown="stage.isFormSelected=true;stage.controls.enabled=false;" onmouseup="stage.isFormSelected=false;stage.controls.enabled=true;"
-                onkeydown="stage.controls.enabled=false;THREEx.FullScreen.enabled=false;" onkeyup="stage.controls.enabled=true;THREEx.FullScreen.enabled=true;"
+                onmousedown="isFormSelected=true;controls.enabled=false;" onmouseup="isFormSelected=false;controls.enabled=true;"
+                onkeydown="controls.enabled=false;THREEx.FullScreen.enabled=false;" onkeyup="controls.enabled=true;THREEx.FullScreen.enabled=true;"
                 >
             <form id="form_add_template" method="post" action="#" style="display: none;">
                 <div class="row" >                          
                     <label style="text-align: center;">
                         <button class="form_name btn btn-danger " type="button" id="title-new"  
-                            onmousedown="stage.isFormDrag=true;stage.controls.enabled=false;" 
-                            onmouseup="stage.isFormDrag=false;stage.controls.enabled=true;"
+                            onmousedown="isFormDrag=true;controls.enabled=false;" 
+                            onmouseup="isFormDrag=false;controls.enabled=true;"
                             onmouseover="this.style.cursor='move';">模板名称</button>
                     </label>
                     <div class="well span4">
                         <label for="itemId" >ID&nbsp;&nbsp;<img id="inputIdIcon" src="" /></label>
-                        <input fromWhere="" oldid="" id="inputId" class="span4" name="itemId" type="text" placeholder="输入ID..." autocomplete="off" onchange="this.value=this.value.toUpperCase();stage.assertDuplicateId(this.value,this.fromWhere);"/>
+                        <input fromWhere="" oldid="" id="inputId" class="span4" name="itemId" type="text" placeholder="输入ID..." autocomplete="off" onchange="this.value=this.value.toUpperCase();assertDuplicateId(this.value,this.fromWhere);"/>
                         <label for="itemName" >名称&nbsp;&nbsp;<img id="inputNameIcon" src="" /></label>
                         <input id="inputName" class="span4" name="itemName" type="text" placeholder="输入名称..." autocomplete="off"/ onchange="this.value=this.value.toUpperCase();">      
                         <label class="labelMPointType" for="itemMPointType" >标签&nbsp;&nbsp;<img id="inputMPointTypeIcon" src="" /></label>
                         <input id="inputMPointType" class="span4" name="itemMPointType" type="text" placeholder="输入标签" autocomplete="off" />         
                         <span  class="labelImage" for="itemImage" style="white-space: nowrap;">贴图
-                        <input id="inputImageSelectFileCheckBox" type="checkbox" value=true onclick="dialogue.whenChecked(this,'imagePanel','inputImage');"/>本地文件
+                        <input id="inputImageSelectFileCheckBox" type="checkbox" value=true onclick="whenChecked(this,'imagePanel','inputImage');"/>本地文件
                         <!-- <button  id="inputImageSelectFile" state=false class="btn btn-small btn-inverse" type="button" onclick="this.state=true;inputImageFake.click();" style="display: none;float: right;"><i class="icon-camera icon-white"></i></button> -->
                         <span id="imagePanel"  style="display: none;float: right;">
                             <span id="imagePreview"></span>
-                            <button  id="inputImageSelectFile" class="btn btn-mini btn-inverse" type="button" onclick="dialogue.toLoadImage();" ><i class="icon-picture icon-white"></i></button>
+                            <button  id="inputImageSelectFile" class="btn btn-mini btn-inverse" type="button" onclick="toLoadImage();" ><i class="icon-picture icon-white"></i></button>
                         </span>
                         <img id="inputImageIcon" src="" />  
                         </span>
                         <!-- <input id="inputImageFake" class="span4" name="itemImage" type="file" style="display: none;" autocomplete="off" onchange="inputImage.value=this.files[0].name.toLowerCase();" />   -->
                         <script>
                             var materialMap;
-                            dialogue = new Dialogue();
-                            Dialogue.prototype.toClearImagePreview=function(){
+                            function toClearImagePreview(){                            
                                 var iPreview=iBase.Id("imagePreview");
                                 while(iPreview.childElementCount>0)
                                 {
                                     iPreview.removeChild(iPreview.children[0]);
                                 }
                             }
-                            Dialogue.prototype.toLoadImage= function(){
-                                this.toClearImagePreview();                      
+                            function toLoadImage(){
+                                toClearImagePreview();                      
                                 var iPreview=iBase.Id("imagePreview");
-                                materialMap = new UI.Texture().onChange( this.imageChange );
+                                materialMap = new UI.Texture().onChange( imageChange );
                                 materialMap.dom.children[1].style.display="none";
                                 iPreview.appendChild(materialMap.dom);
                                 materialMap.dom.children[0].click();
                             }
-                            Dialogue.prototype.imageChange= function(){
+                            function imageChange(){
                                 inputImage.value=materialMap.texture.sourceFile.toLowerCase();
                             }
                         </script>
                         <input id="inputImage" class="span4" name="itemImage" type="text" placeholder="*.png/jpg" autocomplete="off" />  
                         <span class="labelModel" for="itemModel" style="white-space: nowrap;">模型文件(*.obj)
-                        <input id="inputModelSelectFileCheckBox" type="checkbox" value=true onclick="dialogue.whenChecked(this,'inputModelSelectFile','inputModel');"/>本地文件
+                        <input id="inputModelSelectFileCheckBox" type="checkbox" value=true onclick="whenChecked(this,'inputModelSelectFile','inputModel');"/>本地文件
                         <button id="inputModelSelectFile" state=false class="btn btn-mini btn-inverse" type="button" onclick="this.state=true;inputModelFake.click();" style="display: none;float: right;"><i class="icon-file icon-white"></i></button><img id="inputModelIcon" src="" /> 
                         </span>
-                        <input id="inputModelFake" class="span4" name="itemModel" type="file" style="display: none;" autocomplete="off" onchange="inputModel.value=this.files[0].name.toLowerCase();dialogue.assertValidModelType(iBase.Id('inputModel'));" />                     
-                        <input id="inputModel" class="span4" name="itemModel" type="text" placeholder="*.obj" autocomplete="off" onchange="this.value=this.value.toLowerCase();dialogue.assertValidModelType(this);" />                     
+                        <input id="inputModelFake" class="span4" name="itemModel" type="file" style="display: none;" autocomplete="off" onchange="inputModel.value=this.files[0].name.toLowerCase();assertValidModelType(iBase.Id('inputModel'));" />                     
+                        <input id="inputModel" class="span4" name="itemModel" type="text" placeholder="*.obj" autocomplete="off" onchange="this.value=this.value.toLowerCase();assertValidModelType(this);" />                     
                         <label for="itemInfo" >信息</label>
                         <textarea id="inputInfo" class="span4 area" name="itemInfo" placeholder="输入信息..." ></textarea>
                         <label style="text-align: center;">
-                        <button type="button" class="btn btn-info" onclick="dialogue.submitfun('form_add_template')">确定</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button type="button" class="btn btn-warning" onclick="dialogue.cancelsubmitfun('form_add_template')">取消</button> 
+                        <button type="button" class="btn btn-info" onclick="submitfun('form_add_template')">确定</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-warning" onclick="cancelsubmitfun('form_add_template')">取消</button> 
                         </label>
                     </div>
                 </div>
@@ -158,16 +157,16 @@
         <script src="js/bootstrap-table-editable.js"></script>
         <script src="js/table_process.js"></script>
         <div class="container" id="table_manage" tabletype="" style='position: absolute; display: none;  left: 100px; top: 200px; width: 840px;'         
-            onmousedown="stage.isTableSelected=true;stage.controls.enabled=false;stage.curTable='title-manage';" onmouseup="stage.isTableSelected=false;stage.controls.enabled=true;"
-            onkeydown="stage.controls.enabled=false;THREEx.FullScreen.enabled=false;" onkeyup="stage.controls.enabled=true;THREEx.FullScreen.enabled=true;"
+            onmousedown="isTableSelected=true;controls.enabled=false;curTable='title-manage';" onmouseup="isTableSelected=false;controls.enabled=true;"
+            onkeydown="controls.enabled=false;THREEx.FullScreen.enabled=false;" onkeyup="controls.enabled=true;THREEx.FullScreen.enabled=true;"
             >
             <div  >                          
                 <label style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button class="form_name btn btn-danger " type="button"  id="title-manage" 
-                        onmousedown="stage.isFormDrag=true;stage.controls.enabled=false;" 
-                        onmouseup="stage.isFormDrag=false;stage.controls.enabled=true;"
+                        onmousedown="isFormDrag=true;controls.enabled=false;" 
+                        onmouseup="isFormDrag=false;controls.enabled=true;"
                         onmouseover="this.style.cursor='move';">模板名称</button>        
-                    <button  id="groupClose" class="btn btn-mini btn-normal" type="button" onclick="bsTable.TableHide($table);" style="display: block;float: right;">
+                    <button  id="groupClose" class="btn btn-mini btn-normal" type="button" onclick="TableHide($table);" style="display: block;float: right;">
                         <i class="icon-remove "></i>
                     </button>
                 
@@ -175,22 +174,22 @@
                 <div class="well span10" >
                     <div id="toolbar" >
                         <div class="form-inline " role="form" style="float: left">
-                            <button class="btn btn-default btn-small" id="append-data" data-method="append" onclick="bsTable.TableAppend($table);">
+                            <button class="btn btn-default btn-small" id="append-data" data-method="append" onclick="TableAppend($table);">
                                 添加条目
                             </button>
-                            <button class="btn btn-default btn-small" id="remove-data" data-method="remove" onclick="bsTable.TableRemoveSelected($table);">
+                            <button class="btn btn-default btn-small" id="remove-data" data-method="remove" onclick="TableRemoveSelected($table);">
                                 删除所选
                             </button>
-                            <button class="btn btn-default btn-small" id="show-data" data-method="show" onclick="bsTable.TableHideItems($table,true);">
+                            <button class="btn btn-default btn-small" id="show-data" data-method="show" onclick="TableHideItems($table,true);">
                                 显示
                             </button>
-                            <button class="btn btn-default btn-small" id="hide-data" data-method="hide" onclick="bsTable.TableHideItems($table,false);">
+                            <button class="btn btn-default btn-small" id="hide-data" data-method="hide" onclick="TableHideItems($table,false);">
                                 隐藏
                             </button>
-                            <button class="btn btn-default btn-small" id="highlight-data" data-method="hightlight" onclick="bsTable.TableHighLightItems($table,true);">
+                            <button class="btn btn-default btn-small" id="highlight-data" data-method="hightlight" onclick="TableHighLightItems($table,true);">
                                 高亮所选
                             </button>
-                            <button class="btn btn-default btn-small" id="chlight-data" data-method="chlight" onclick="bsTable.TableHighLightItems($table,false);">
+                            <button class="btn btn-default btn-small" id="chlight-data" data-method="chlight" onclick="TableHighLightItems($table,false);">
                                 取消高亮
                             </button>
                         </div>
@@ -212,7 +211,7 @@
                         <thead>
                             <tr id='tr_column' >
                                 <th data-field="state" data-checkbox="true"></th>
-                                <th class="ItemID" data-field="id" data-halign="center" data-align="center" data-sortable="true" data-editable="true" data-width=350 onchange="bsTable.TableGetByRow($table,row);alert(this.value)" data-switchable="false">ID</th>
+                                <th class="ItemID" data-field="id" data-halign="center" data-align="center" data-sortable="true" data-editable="true" data-width=350 onchange="TableGetByRow($table,row);alert(this.value)" data-switchable="false">ID</th>
                                 <th data-field="name" data-halign="center" data-align="center" data-sortable="true" data-editable="true" >组  名</th>
                                 <th data-field="children" data-halign="center" data-align="center" data-sortable="false" data-editable="true" >信息</th>
                                 <th data-field="operate1" data-halign="center" data-align="center" data-formatter="operateFormatter1" data-events="operateEvents1" data-width=70 >编辑</th>
@@ -232,7 +231,7 @@
             if( iBase.Id("title-manage").innerHTML=="分组管理")
                 iconstyle="icon-list";
                 
-            if(stage.params.mode_edit)
+            if(params.mode_edit)
             return [
                 '<a class="edit" href="javascript:void(0)" title="编辑">',
                 '<i class="'+iconstyle+'"></i>',
@@ -274,35 +273,35 @@
         window.operateEvents1 = {
             'click .detail': function (e, value, row, index) {
                 // 弹出查看分组框
-                bsTable.TableDetail(row,index);
+                TableDetail(row,index);
             },
             'click .edit': function (e, value, row, index) {
                 // 弹出编辑框
-                bsTable.TableEdit(row,index);
+                TableEdit(row,index);
             },
             'click .remove': function (e, value, row, index) {
                 // 直接删除
-                bsTable.TableRemoveById($table,row['id']);
+                TableRemoveById($table,row['id']);
             }
         };        
         window.operateEvents2 = {
             'click .toshow': function (e, value, row, index) {
                 // 显示
-                bsTable.TableHideItem(row,true);
+                TableHideItem(row,true);
             },
             'click .tohide': function (e, value, row, index) {
                 // 隐藏
-                bsTable.TableHideItem(row,false);
+                TableHideItem(row,false);
             }
         };        
         window.operateEvents3 = {
             'click .tohighlight': function (e, value, row, index) {
                 // 高亮
-                bsTable.TableHighLightItem(row,true);
+                TableHighLightItem(row,true);
             },
             'click .toopenlight': function (e, value, row, index) {
                 // 高亮
-                bsTable.TableHighLightItem(row,false);
+                TableHighLightItem(row,false);
             }
         };
         </script>
@@ -319,7 +318,7 @@
                         onmousedown="isFormDrag=true;controls.enabled=false;" 
                         onmouseup="isFormDrag=false;controls.enabled=true;"
                         onmouseover="this.style.cursor='move';" >模板名称</button>        
-                    <button  id="subgroupClose" class="btn btn-mini btn-normal" type="button" onclick="bsTable.subTableHide($sub_table);" style="display: block;float: right;">
+                    <button  id="subgroupClose" class="btn btn-mini btn-normal" type="button" onclick="subTableHide($sub_table);" style="display: block;float: right;">
                         <i class="icon-remove "></i>
                     </button>
                 
@@ -327,19 +326,19 @@
                 <div class="well span9" >
                     <div id="toolbarsub" >
                         <div class="form-inline " role="form-sub" style="float: left">
-                            <button class="btn btn-default btn-small" id="remove-data-sub" data-method="remove" onclick="bsTable.subTableRemoveSelected($sub_table);">
+                            <button class="btn btn-default btn-small" id="remove-data-sub" data-method="remove" onclick="subTableRemoveSelected($sub_table);">
                                 删除所选
                             </button>
-                            <button class="btn btn-default btn-small" id="show-data-sub" data-method="show" onclick="bsTable.subTableHideItems($sub_table,true);">
+                            <button class="btn btn-default btn-small" id="show-data-sub" data-method="show" onclick="subTableHideItems($sub_table,true);">
                                 显示
                             </button>
-                            <button class="btn btn-default btn-small" id="hide-data-sub" data-method="hide" onclick="bsTable.subTableHideItems($sub_table,false);">
+                            <button class="btn btn-default btn-small" id="hide-data-sub" data-method="hide" onclick="subTableHideItems($sub_table,false);">
                                 隐藏
                             </button>
-                            <button class="btn btn-default btn-small" id="highlight-data-sub" data-method="highlight" onclick="bsTable.TableHighLightItems($sub_table,true);">
+                            <button class="btn btn-default btn-small" id="highlight-data-sub" data-method="highlight" onclick="TableHighLightItems($sub_table,true);">
                                 高亮所选
                             </button>
-                            <button class="btn btn-default btn-small" id="chlight-data-sub" data-method="chlight" onclick="bsTable.TableHighLightItems($sub_table,false);">
+                            <button class="btn btn-default btn-small" id="chlight-data-sub" data-method="chlight" onclick="TableHighLightItems($sub_table,false);">
                                 取消高亮
                             </button>
                         </div>
@@ -361,7 +360,7 @@
                         <thead>
                             <tr id='sub_tr_column' >
                                 <th data-field="state" data-checkbox="true"></th>
-                                <th class="ItemID"  data-halign="center" data-align="center" data-field="id" data-sortable="true" data-editable="true" onchange="bsTable.TableGetByRow($sub_table,row);alert(this.value)"  data-switchable="false">ID</th>
+                                <th class="ItemID"  data-halign="center" data-align="center" data-field="id" data-sortable="true" data-editable="true" onchange="TableGetByRow($sub_table,row);alert(this.value)"  data-switchable="false">ID</th>
                                 <th data-field="operate1" data-width=70 data-halign="center" data-align="center" data-formatter="operateFormatterSub1" data-events="operateEventsSub1">编辑</th>
                                 <th data-field="operate2" data-width=70 data-halign="center" data-align="center" data-formatter="operateFormatterSub2" data-events="operateEventsSub2">隐藏</th>
                                 <th data-field="operate3" data-width=70 data-halign="center" data-align="center" data-formatter="operateFormatterSub3" data-events="operateEventsSub3">高亮</th>
@@ -374,7 +373,7 @@
         <script>
         var $sub_table = $('#group-table-sub');
         function operateFormatterSub1(value, row, index) {
-            if(stage.params.mode_edit)
+            if(params.mode_edit)
             return [
                 '<a class="subedit" href="javascript:void(0)" title="编辑">',
                 '<i class="icon-map-marker"></i>',
@@ -416,35 +415,35 @@
         window.operateEventsSub1 = {
             'click .subdetail': function (e, value, row, index) {
                 // 弹出查看分组框
-                bsTable.TableDetail(row,index);
+                TableDetail(row,index);
             },
             'click .subedit': function (e, value, row, index) {
                 // 弹出编辑框
-                bsTable.subTableEdit(row,index);
+                subTableEdit(row,index);
             },
             'click .subremove': function (e, value, row, index) {
                 // 直接删除
-                bsTable.subTableRemoveById($sub_table,row['id']);
+                subTableRemoveById($sub_table,row['id']);
             }
         };
         window.operateEventsSub2 = {
             'click .subtoshow': function (e, value, row, index) {
                 // 显示
-                bsTable.subTableHideItem(row,true);
+                subTableHideItem(row,true);
             },
             'click .subtohide': function (e, value, row, index) {
                 // 隐藏
-                bsTable.subTableHideItem(row,false);
+                subTableHideItem(row,false);
             }
         };        
         window.operateEventsSub3 = {
             'click .subtohighlight': function (e, value, row, index) {
                 // 高亮
-                bsTable.TableHighLightItem(row,true);
+                TableHighLightItem(row,true);
             },
             'click .subtoopenlight': function (e, value, row, index) {
                 // 高亮
-                bsTable.TableHighLightItem(row,false);
+                TableHighLightItem(row,false);
             }
         };
         </script>
@@ -497,21 +496,186 @@
         <script src="js/classes/floor.js"></script>
         <script src="js/classes/building.js"></script>
         <script src="js/classes/buildinglist.js"></script>
-        <script src="js/classes/stage.js"></script>
         
         <script>
         
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
- 
-            var stage= new Stage();
             
-            stage.initBuildingDoc();
-            stage.initScene();
-            Init();
-            stage.animate();
+            var container, stats,controls,transControl;
+            var camera, scene, projector, raycaster, renderer;
+            var direct_light_01,direct_light_02,plane;
+            var lights=new Array();
+            var vis=false;
+            var curSelected;
+            var curdistance;
+            var deltax,deltay,deltaz;
+            var planex=null,planey=null,planez=null;
+            // var flag_addBlock=false;
+            var flag_addMPoint=false;
+            var isFromLocalpoint=false;//本地文件
+            var curMPoint=null;
+            var flag_moveBlock=false;            
+            var enable_moveBlock=true;
+            var lock_dock=false;
+            var keyboard;
+            var Viewer_version="V3.5.3";
+            
+            var maxTemperature=90;
+            var minTemperature=10;          
+            
+            var noPan=false;
+            var noZoom=false;
+            var noOrbit=false; 
+            var selectionBox;
+            
+            var  msgTools=["jqTooltip",  "buble", "humane"];
+            //msgTool="humane";//"jqTooltip"  "buble" "humane"
+            //msgTool="buble";
+            msgTool=msgTools[0];
+            
+            var needTemp=false;//颜色表示温度模式
+            var hide_docmenu=false;
+            
+            var ismodelActivated = false;
+            var curTable;
+            var curGroup,isBlockMoved=false;
+            var isBuildFromMngList=false;
+            var isFormSelected=false;
+            var isTableSelected=false;            
+            var isSubTableSelected=false;
+            var isFormDrag=false;
+            var isMPointFormSelected=false;
+            var isInform=false;
+            
+            var oConfirmModal;
+            var oNewDiv=iBase.Id("table_add_template");            
+            var oFormDiv=iBase.Id("form_add_template");            
+            var oManageDiv=iBase.Id("table_manage");
+            var osubManageDiv=iBase.Id("subtable_manage");            
+            var demoGUI,box1gui,box2gui;
+            var shiftkeypressed=false;
+            //dragDiv.js
+            // 实现可拖动的div
+            var pxDrag = 0;
+            var pyDrag = 0;
+            var beginDrag = false;
+            //是否要开启透明效果
+            var enableOpacity = true; // 默认允许
+            var myDragDiv;
 
-            function Init()
+            var guiFloor,guiBlock,guiMPoint,guiBrand;
+            var uiBuilding,uiFloor,uiMode,uiClose;
+            var uilist=new Array();
+            
+            var modelbias= new THREE.Vector3(0,0,50);
+            var modelbaseHeight= {block:2,mpoint:0,brand:30};
+
+            var colorlist={0:0x0000ff,1:0x00ff00,2:0xff0000};
+            var tmpList={"":null,"温度过高":2,"温度适宜":1,"温度过低":0};
+    
+            
+            var params={
+                'building':0,
+                'floor':0 ,
+                'mode_view':true,
+                'mode_edit':false
+            };        
+            params.close = function() {
+                var startEvent = new CustomEvent( 'close-guiFloor', closeGuiFloor());
+                window.dispatchEvent(startEvent);
+            };
+            var lastp={
+                'building':0,
+                'floor':0 ,
+                'mode_view':true,
+                'mode_edit':false
+            };
+            var blockparams={
+                'bar_temp':minTemperature,
+                'temperature':null,
+                'curUI':null,
+                'title':null,
+                'ID':"CVD",
+                'name':null,
+                'mpoint_type':null,
+                'model_path':null,
+                'model_type':null,
+                'red':null,
+                'green':null,
+                'blue':null,
+                'position':null,
+                'rotation':null,
+                'scale':null,
+                'image':null,
+                'info':null
+            };
+            blockparams.closeSubGUI = function() {
+                var startEvent = new CustomEvent( 'close-guiBlock', closesubGUI() );
+                window.dispatchEvent(startEvent);
+            };
+            var new_id="";
+            
+            var mouse = new THREE.Vector2(), INTERSECTED,INTERSECTED_ON;
+            var radius = 100, theta = 0;
+            var init_x,init_y,init_z;
+            
+            var bdList=new BuildingList();
+            var curBuilding;
+            var curFloor;            
+            var BuildingListXML='./data/BuildingList.xml';
+            
+            uilist.push(guiBrand);
+            uilist.push(guiMPoint);
+            uilist.push(guiBlock);
+            var popMenu = new popUpMenu('popupmenu');
+            
+            initBuildingDoc();
+            initScene();
+            animate();
+
+            function closeGuiFloor()
             {                
+                if(guiFloor!=undefined&&guiFloor!=null)
+                    guiFloor.destroy();
+                guiFloor=null;
+            }
+            function closesubGUI()
+            {           
+                var cnt=0;
+                for(var item=0;item<3;item++)
+                {       
+                    if(uilist[item]!=undefined&&uilist[item]!=null)
+                    {
+                        uilist[item].destroy();
+                        cnt++;
+                    }
+                    uilist[item]=null;
+                }
+                if(cnt>0) guiFloor.open();
+                selectionBox.visible=false;
+                if(INTERSECTED) unSelectObject();
+            }
+            function initBuildingDoc(){
+                toLoadPart(bdList,BuildingListXML,params.building,params.floor);                
+                //toLoadAll(bdList,BuildingListXML);
+                            
+                                       
+
+                initFloorGUI(bdList,curBuilding,curFloor,params);
+                //alert(curFloor.getGroupAt(0).getCount());
+                MoveFloatLayer("table_add_template");
+            //typeahead初始化
+            // typeMeAhead('form_add_template','#inputId','/data/id',null,'id');
+            // typeMeAhead('form_add_template','#inputName','/data/name',null,'name');
+            // typeMeAhead('form_add_template','#inputModel','/data/model',null,'model'); 
+            // typeMeAhead('form_add_template','#inputMPointType','/data/mpointtype',null,'mpointtype'); 
+            // typeMeAhead('form_add_template','#inputImage','/data/brandimage',null,'brandimage'); 
+
+            } 
+            
+
+            
+            function initScene() {
                 $(document).ready(
                     function()
                     {
@@ -528,23 +692,609 @@
                                 halign : 'center'
                             }
                         )
+                        // $('#dock3').Fisheye(
+                            // {
+                                // maxWidth: 60,
+                                // items: 'a',
+                                // itemsText: 'span',
+                                // container: '.dock-container3',
+                                // itemWidth: 40,
+                                // proximity: 80,
+                                // alignment : 'left',
+                                // valign: 'bottom',
+                                // halign : 'center'
+                            // }
+                        // )
                     }
-                );                
-                document.body.appendChild( stage.container );
+                );
+                container = document.createElement( 'div' );
+                document.body.appendChild( container );
+
+                var info = document.createElement( 'div' );
+                info.style.position = 'absolute';
+                info.style.top = '10px';
+                info.style.width = '100%';
+                info.style.textAlign = 'center';
+                info.innerHTML = '<a target="_blank">3D Building</a> Viewer';
+                //container.appendChild( info );
+
+                // CAMERA
+                var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
+                var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 1, FAR = 1000;
+                var FOV=70;
+                var orthoNear=-500, orthoFar = 1000;
+                // camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
+                // camera = new THREE.CombinedCamera( window.innerWidth / 2, window.innerHeight / 2, 70, 1, 1000, - 500, 1000);
+                camera = new THREE.CombinedCamera( window.innerWidth / 2, window.innerHeight / 2, FOV, NEAR, FAR, orthoNear, orthoFar);
                 
-                document.addEventListener( 'mousemove', stage.onDocumentMouseMove, false );
-                document.addEventListener( 'dblclick', stage.onDoubleClick, false );
-                document.addEventListener( 'mousedown', stage.onDocumentMouseDown, false );
-                document.addEventListener( 'mouseup', stage.onDocumentMouseUp, false );
+                scene = new THREE.Scene();
+
+        
+                      
+                //camera.position.set(0,150,400);
+                //camera.position.set(0,500,50);
+                if(curFloor.camerapos!=undefined)                
+                    camera.position.copy(curFloor.camerapos); 
+                else
+                    camera.position.set(-150,150,450);                
+                camera.lookAt(scene.position); 
+                //camera.toOrthographic();
+                camera.toPerspective();                
+                camera.toTopView();                
+                camera.setZoom(curZoom); 
+                                      
                 
-                document.addEventListener( 'mousewheel', stage.onMouseWheel, false );
-                document.addEventListener( 'keydown', stage.onKeyDown, false );
-                document.addEventListener( 'keyup', stage.onKeyUp, false );
-                window.addEventListener( 'resize',  stage.onWindowResize, false );
+                //var light = new THREE.AmbientLight(0xcccccc); 
+                //scene.add(light);
+                direct_light_01 = new THREE.DirectionalLight( 0xffffff ,1.5);
+                direct_light_01.position.set( 2, 1.5, 1 ).normalize();
+                direct_light_01.shadowDarkness = 0.95;;
+                direct_light_01.shadowCameraNear=10;
+                direct_light_01.shadowCameraFar=30;
+                direct_light_01.shadowCameraLeft=-100;
+                direct_light_01.shadowCameraRight=100;
+                direct_light_01.shadowCameraTop=100;
+                direct_light_01.shadowCameraBottom=-100;
+                direct_light_01.shadowMapWidth = 1024; direct_light_01.shadowMapHeight = 1024;
+    
+                direct_light_02 = new THREE.DirectionalLight( 0xffffff ,0.2);
+                direct_light_02.position.set( -1, -1, -1 ).normalize();
+                
+                lights.push(direct_light_01);
+                lights.push(direct_light_02);
+                
+                var geometry = new THREE.PlaneBufferGeometry( 1000, 1000 );
+                geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
+
+                plane = new THREE.Mesh( geometry );
+                plane.visible = false;
+
+                projector = new THREE.Projector();
+                raycaster = new THREE.Raycaster();
+
+                renderer = new THREE.WebGLRenderer({ antialias: true, logarithmicDepthBuffer: true });
+				renderer.setPixelRatio( window.devicePixelRatio );
+                renderer.shadowMapEnabled = true;
+                renderer.shadowMapSoft = true;
+                renderer.setClearColor( 0xf0f0f0 );
+                renderer.setSize( window.innerWidth, window.innerHeight );
+                renderer.sortObjects = false;
+                container.appendChild(renderer.domElement);
+
+                stats = new Stats();
+                stats.domElement.style.position = 'absolute';
+                stats.domElement.style.top = '0px';
+                //container.appendChild( stats.domElement );
+
+                document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+                document.addEventListener( 'dblclick', onDoubleClick, false );
+                document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+                document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+                
+                document.addEventListener( 'mousewheel', onMouseWheel, false );
+                document.addEventListener( 'keydown', onKeyDown, false );
+                document.addEventListener( 'keyup', onKeyUp, false );
+                //
+                window.addEventListener( 'close-guiBlock', animate,false );
+                window.addEventListener( 'close-guiFloor', animate,false );
+                window.addEventListener( 'resize', onWindowResize, false );
+                controls = new THREE.OrbitControls( camera );
+                transControl = new THREE.TransformControls( camera, renderer.domElement );
+                transControl.setSize( 0.5 );
+                transControl.addEventListener( 'change', updateControlers ); //
+                
+                keyboard = new THREEx.KeyboardState();
+                THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
+               
+                selectionBox = new THREE.BoxHelper();
+                selectionBox.material.depthTest = false;
+                selectionBox.material.transparent = true;
+                selectionBox.visible = false;
+                loadFloor(scene, curFloor); 
+                // controls.panUp(window.innerHeight/8);
+                // controls.update();
             }
+
+            function updateControlers() {
+                transControl.update();     
+                if(INTERSECTED!=null)
+                {
+                    INTERSECTED.scale.rounding(3);
+                    var scal = INTERSECTED.scale;
+                    blockparams.scale = scal.toArray().toString();
+                    setObjScale(INTERSECTED.parent,curFloor,scal.x,scal.y,scal.z);
+                }
+            }
+            function onKeyUp(event) {                
+                controls.enabled=true;
+            }
+            function windowRefresh(confirmed)
+            {
+                if(confirmed) window.location.reload();
+            }
+            function onKeyDown(event) {
+                var keyCode = event.keyCode
+                switch(keyCode)
+                {
+                    case 116://F5
+                        event.preventDefault();
+                        var ret = alertConfirm("是否重新载入？",windowRefresh);
+                        return;
+                        //if(!ret) event.preventDefault();
+                    break;
+                    case 27://ESC
+                        if(oFormDiv.style.display=="block") 
+                            cancelsubmitfun('form_add_template');
+                        mpointStop_dom();
+                        event.preventDefault();                        
+                    break;
+                }
+                controls.enabled=false;
+            }
+            function onWindowResize() {
+
+					camera.setSize( window.innerWidth, window.innerHeight );
+					camera.updateProjectionMatrix();
+
+                    renderer.setSize( window.innerWidth, window.innerHeight );
+                    MoveFloatLayer("table_add_template");
+                    MoveFloatLayer('table_manage');
+                    MoveFloatLayer('subtable_manage');
+					
+					$table.bootstrapTable('resetView');
+					$sub_table.bootstrapTable('resetView');
+
+            }
+
+            function onMouseWheel( event ) {
+                //event.preventDefault();				                
+                if(ismodelActivated)
+                {
+                    oConfirmModal = iBase.Id("windowConfirmModal");
+                    var oConfirmModalUp = oConfirmModal.children[0];
+                    var oConfirmModalDown = oConfirmModal.children[1];                
+                    if(isInDivs([oConfirmModalUp,oConfirmModalDown],event.clientX-oConfirmModal.offsetLeft,event.clientY-oConfirmModal.offsetTop))
+                        controls.enabled=false;
+                    else 
+                    {
+                        oConfirmModalDown.children[0].click();
+                        controls.enabled=true;
+                        ismodelActivated=false;
+                    }
+                    return;
+                }
+				if(!isInDiv(osubManageDiv,event.clientX,event.clientY)&&!isInDiv(oManageDiv,event.clientX,event.clientY))
+				{
+					var delta = 0;
+					if ( event.wheelDelta !== undefined ) { // WebKit / Opera / Explorer 9
+						delta = event.wheelDelta;
+					} else if ( event.detail !== undefined ) { // Firefox
+						delta = - event.detail;
+					}                
+					if(controls.enabled==false) zoomInOut(camera,delta/50);
+				}
+				else
+				{
+					controls.enabled=false;
+				}
+            }
+            function onDocumentMouseMove( event ) {
+                //event.preventDefault();                
+                if(shiftkeypressed)
+                {
+                    keyboard.destroy();
+                    keyboard = new THREEx.KeyboardState();
+                    shiftkeypressed=false;
+                    unSelectObject(true);
+                    controls.enabled=true;
+                }
+                if(!isInDivs([oNewDiv,oManageDiv,osubManageDiv,box1gui,box2gui],event.clientX,event.clientY))
+                {
+                    event.preventDefault();                   
+                }   
+                mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+                mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;    
+                var fenmu = Math.sqrt(window.innerWidth*window.innerWidth+window.innerHeight*window.innerHeight);
+                
+                if(isFormDrag==true)
+                {                          
+                    onMoveDiv(event);
+                    return;
+                }
+                
+                // if(params.mode_view==true)
+                // {
+                    // closesubGUI();
+                // }
+                if (INTERSECTED )
+                {
+                    if(flag_moveBlock&&enable_moveBlock)
+                    {                    
+                        container.style.cursor="move";
+                        var vector = new THREE.Vector3( mouse.x, mouse.y, 0 );
+                        vector.unproject(  camera );
+                        raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
+                        var intersectplane = raycaster.intersectObjects( [plane] ,true);    
+                    
+                        var newplanex=planex, newplaney=planey, newplanez=planez;
+                        if(intersectplane.length >0)   
+                        {                            
+                            newplanex=intersectplane[0].point.x;
+                            newplaney=intersectplane[0].point.y;
+                            newplanez=intersectplane[0].point.z;
+                        }        
+                        
+                        deltax=newplanex-planex;
+                        deltay=newplaney-planey;
+                        deltaz=newplanez-planez;
+                        
+                        objPositionChange(INTERSECTED.parent,curFloor,deltax,0,deltaz);
+                         
+                        planex = newplanex;
+                        planey = newplaney;
+                        planez = newplanez;
+                        
+                        fillBlockUI(blockparams,INTERSECTED);
+                        if(osubManageDiv.style.display=='block')
+                        {
+                            if(isInDiv(osubManageDiv,event.clientX,event.clientY))                            
+                                alertMsg(["释放鼠标添加到分组中"]);                        
+                            else alertMsg(["拖拽到分组编辑面板中，添加到分组中"]);
+                        }
+                        else
+                            alertMsg(getMsg(INTERSECTED.parent,curFloor));
+                        isBlockMoved=true;
+                        event.preventDefault();
+                    }  
+                    if(!enable_moveBlock&&!flag_moveBlock)
+                    {                        
+                        container.style.cursor="not-allowed";
+                        event.preventDefault();
+                    }
+                }
+            }
+            function onDoubleClick(event)
+            {
+                //console.log("双击了");
+                if(params.mode_edit)
+                {
+                   // console.log("缩放框");
+                    transControl.attach( INTERSECTED );
+                    transControl.setMode( "scale" );
+                    alertInfo("在空白处，鼠标左右键同时按下，<br>取消选择");
+                }
+            }
+            function onDocumentMouseDown( event ) {
+                
+                if(ismodelActivated)
+                {
+                    oConfirmModal = iBase.Id("windowConfirmModal");
+                    var oConfirmModalUp = oConfirmModal.children[0];
+                    var oConfirmModalDown = oConfirmModal.children[1];              
+                    if(isInDivs([oConfirmModalUp,oConfirmModalDown],event.clientX-oConfirmModal.offsetLeft,event.clientY-oConfirmModal.offsetTop))
+                        controls.enabled=false;
+                    else 
+                    {
+                        oConfirmModalDown.children[0].click();
+                        controls.enabled=true;
+                        ismodelActivated=false;
+                    }
+                    return;
+                }
+                //event.preventDefault();
+                hideMenuD();
+                // event.button==THREE.MOUSE.LEFT;
+                // event.button==THREE.MOUSE.MIDDLE;
+                // event.button==THREE.MOUSE.RIGHT ;
+                
+                
+                if(event.button!=THREE.MOUSE.RIGHT||!params.mode_edit)
+                {
+                    if(!popMenu.isInMenu(event.clientX,event.clientY))
+                        popMenu.hide();
+                    else
+                    {                    
+                        controls.enabled=false; 
+                        return;
+                    }
+                }
+                
+                if(event.button==THREE.MOUSE.MIDDLE)
+                {
+                    controls.enabled=true;
+                    return ;
+                }
+                
+                if(shiftkeypressed)
+                {
+                    keyboard.destroy();
+                    keyboard = new THREEx.KeyboardState();
+                    shiftkeypressed=false;
+                    unSelectObject(true);
+                    controls.enabled=true;
+                }
+                if(isFormSelected==true)
+                {
+                    var oDiv;
+                    oDiv=oNewDiv;
+                    clickOnDiv(oDiv,event);
+                    controls.enabled=false; 
+                    oManageDiv.style.zIndex=1;
+                    oNewDiv.style.zIndex=2;
+                    return;
+                }
+                if(isTableSelected==true)
+                {
+                    var oDiv;
+                    oDiv=oManageDiv;
+                    clickOnDiv(oDiv,event);
+                    controls.enabled=false; 
+                    oManageDiv.style.zIndex=2;
+                    oNewDiv.style.zIndex=1;
+                    return;
+                }
+                if(isSubTableSelected==true)
+                {
+                    var oDiv;
+                    oDiv=osubManageDiv;
+                    clickOnDiv(oDiv,event);
+                    controls.enabled=false; 
+                    osubManageDiv.style.zIndex=3;
+                    oManageDiv.style.zIndex=2;
+                    oNewDiv.style.zIndex=1;
+                    return;
+                }
+                if(isInform==true)
+                    return;
+                
+                
+                demoGUI = document.getElementsByClassName("dg ac");
+                box1gui=demoGUI.item(0).getElementsByClassName("dg main a").item(0);
+                box2gui=demoGUI.item(0).getElementsByClassName("dg main a").item(1); 
+                
+                if(isInDivs([oNewDiv,box1gui,box2gui],event.clientX,event.clientY))
+                {
+                    controls.enabled=false;   
+                    return;                   
+                }    
+                
+                if(isOverDocMenu(event.clientX,event.clientY))
+                {
+                    controls.enabled=false; 
+                    return;
+                }
+                
+                
+                
+                var vector = new THREE.Vector3( mouse.x, mouse.y, 0 );
+                vector.unproject(  camera );
+
+                raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
+
+                var intersects = raycaster.intersectObjects( scene.children ,true);                
+                
+                
+                index=0;
+                if(intersects.length > index || (intersects[ index ].object instanceof THREE.BoxHelper))
+                    while(/*INTERSECTED != intersects[ index ].object&&*/intersects[ index ].object.visible==false||(intersects[ index ].object instanceof THREE.BoxHelper))
+                    {
+                        index++;
+                        if(intersects.length <= index) break;
+                    }
+                if ( intersects.length > index ) {
+
+                    // zoomIn=zoomIn+0.5;
+                    // camera.setZoom(zoomIn);
+                    
+                    if ( /*INTERSECTED != intersects[ index ].object&&*/intersects[ index ].object.visible==true) {
+                        if ( INTERSECTED )
+                            unSelectObject(); //交替选择
+                        
+                        INTERSECTED = intersects[ index ].object;
+                        init_x=INTERSECTED.parent.position.x;
+                        init_y=INTERSECTED.parent.position.y;
+                        init_z=INTERSECTED.parent.position.z;
+                        selectObject(INTERSECTED); 
+                        if(plane.position.y != INTERSECTED.parent.position.y)
+                        {
+                            plane.position.y = INTERSECTED.parent.position.y;//将交平面移动交点的高度
+                            render();
+                        }
+                        
+                        if ( INTERSECTED.parent.modelid )
+                        {                                                      
+                            if ( keyboard.pressed("shift") ) {
+                                popMenu.delObject_menu(INTERSECTED.parent);
+                                shiftkeypressed=true;
+                                return;
+                            }
+                            var vector = new THREE.Vector3( mouse.x, mouse.y, 0 );
+                            vector.unproject(  camera );
+                            raycaster.set( camera.position, vector.sub( camera.position ).normalize() );       
+                            var intersectplane = raycaster.intersectObjects( [plane] ,true);    
+                        
+                            if(intersectplane.length >0)   
+                            {                            
+                                planex=intersectplane[0].point.x;
+                                planey=intersectplane[0].point.y;
+                                planez=intersectplane[0].point.z;
+                            }                                            
+                            controls.enabled=false;
+                            curdistance =  intersects[ index ].distance;
+                            if(params.mode_edit==true&&!flag_addMPoint&&INTERSECTED.parent.type=="block")
+                            {
+                                blockparams.title="区块";
+                                fillBlockUI(blockparams,INTERSECTED);
+                                
+                                if(guiBlock==null||guiBlock==undefined)
+                                    initBlockUI(blockparams,0);                                
+                            }
+                            if(params.mode_edit==true&&!flag_addMPoint&&INTERSECTED.parent.type=="brand")
+                            {
+                                blockparams.title="标志牌";
+                                fillBlockUI(blockparams,INTERSECTED);
+                                
+                                if(guiBrand==null||guiBrand==undefined)
+                                    initBlockUI(blockparams,1);     
+                            }
+                            if(params.mode_edit==true&&INTERSECTED.parent.type=="mpoint")
+                            {
+                                blockparams.title="测点";
+                                fillBlockUI(blockparams,INTERSECTED);
+                                
+                                if(guiMPoint==null||guiMPoint==undefined)
+                                    initBlockUI(blockparams,2);     
+                            }
+                            if(flag_addMPoint&& INTERSECTED.parent.type!="mpoint"&&INTERSECTED.parent.modelname !="地板")
+                            {
+                                //向场景中添加点后，选择测点ID、名称等信息
+                                enable_moveBlock=false;
+                                //new_id=newMPoint(scene,curFloor,intersects[ index ].point);  
+                                if(curMPoint!=null&&curMPoint!=undefined)
+                                {
+                                    curMPoint.position=intersects[ index ].point;
+                                    curMPoint.texture=Math.random()*0xffffff;
+                                    var id,name,t_id,t_name;
+                                    t_id=curMPoint.id;id=t_id;
+                                    t_name=curMPoint.name;name=t_name;
+                                    var cnt=1;
+                                    while(curFloor.getObjectById(id)!=null)
+                                    {
+                                        cnt++;
+                                        id=t_id+" "+cnt;                
+                                        name=t_name+" "+cnt;
+                                    }                    
+                                    var point = new MPoint(id,name);
+                                    point.copy(curMPoint);
+                                    curFloor.addMPointItem(point);
+                                    loadBlock(scene,point,"mpoint",isFromLocalpoint);
+                                    if(params.mode_edit)
+                                    {
+                                        INTERSECTED=scene.getObjectByModelId(point.id).children[0];
+                                        blockparams.title="测点";
+                                        fillBlockUI(blockparams,INTERSECTED);                                    
+                                        if(guiMPoint==null||guiMPoint==undefined)
+                                            initBlockUI(blockparams,2);   
+                                    }
+                                }
+                                enable_moveBlock=flag_moveBlock&&!(event.button==THREE.MOUSE.RIGHT);                                
+                            }                                
+                            // else if(flag_addBlock&& INTERSECTED.parent.modelname =="地板")
+                            // {
+                                // enable_moveBlock=false;
+                                // new_id=newBlock(scene,curFloor,intersects[ index ].point);
+                            // }
+                            else
+                            {
+                                enable_moveBlock= flag_moveBlock&&!(event.button==THREE.MOUSE.RIGHT);
+                            }
+                            curSelected=INTERSECTED.parent;   
+
+                            if(event.button==THREE.MOUSE.RIGHT&&params.mode_edit)
+                            {
+                                if(popMenu.visible==true)
+                                     popMenu.hide();
+                                popMenu.show(curSelected,event.clientX,event.clientY);
+                            } 
+                            
+                            alertMsg(getMsg(INTERSECTED.parent,curFloor));
+                            
+                        }
+                    }
+
+                }
+                else {
+                    
+                    if ( INTERSECTED )//点空了
+                            unSelectObject(true);;
+                }
+
+            }
+            function onDocumentMouseUp( event ) {
+                    container.style.cursor="auto";
+                    onUpDiv();
+                    if(params.mode_view)
+                    {
+                        if ( INTERSECTED )
+                                unSelectObject(true);;
+                    }
+                    else
+                    {
+                         enable_moveBlock=false;
+                    }
+                    if(INTERSECTED&&osubManageDiv.style.display=='block'&&isBlockMoved)
+                    {
+                        objPositionSet(INTERSECTED.parent,curFloor,init_x,init_y,init_z);
+                        
+                        if(isInDiv(osubManageDiv,event.clientX,event.clientY))
+                        {
+                            var id=INTERSECTED.parent.modelid;
+                            console.log("添加"+id);   
+                            subTableAppend($sub_table,id);
+                        }   
+                        isBlockMoved=false;
+                    }
+                    if(controls.enabled==false) controls.enabled=true;
+                     //controls.enabled=!params.mode_edit;
+                    hideMsg();
+            }
+
+            //
+            function animate() {
+
+                requestAnimationFrame( animate );
+
+                render();
+                stats.update();
+
+            }
+
+            function render() {
+
+                // theta += 0.1;
+
+                // camera.position.x = radius * Math.sin( THREE.Math.degToRad( theta ) );
+                // camera.position.y = radius * Math.sin( THREE.Math.degToRad( theta ) );
+                // camera.position.z = radius * Math.cos( THREE.Math.degToRad( theta ) );
+                // camera.lookAt( scene.position );
+
+                renderer.render( scene, camera );
+                
+            }
+
         </script>
+                
+
+        
+        
         <div id="JQtooltip" style="display: none;"> </div> 
         <link rel="stylesheet" href="css/jQuery.toolTip.css" media="screen">
         <script type="text/javascript" src="js/callJQtoolTip.js"></script> 
-    </body>    
+        
+
+        
+        
+        
+    </body>
+    
 </html>
