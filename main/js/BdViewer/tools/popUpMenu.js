@@ -26,7 +26,10 @@ popUpMenu.prototype.fillMenu = function(dataJson){
             },
             onSelect: function(name) {
                 if(name==undefined) return;
-                menu.process(name);
+                if(menu.div.id=="popupmenu")
+                    menu.process(name);
+                if(menu.div.id=="popupmenu-new")
+                    menu.processNew(name);
                 menu.hide();
             }
         });
@@ -37,10 +40,13 @@ popUpMenu.prototype.hide = function()
     this.clearMenu();
     this.visible=false;
 }
-popUpMenu.prototype.show = function(obj,x,y){    
-    this.clearMenu();
+popUpMenu.prototype.selectobj = function(obj)
+{          
     this.obj=obj;
-    var data=this.getJsonDataofMenu(obj);
+}
+popUpMenu.prototype.show = function(x,y){    
+    this.clearMenu();
+    var data=this.getJsonDataofMenu();
     this.fillMenu(data);
     this.fadeTool.fadeIn(this.div);
     this.fadeTool.MoveFloatLayer(this.div.id,x,y);
@@ -98,10 +104,95 @@ popUpMenu.prototype.isInDiv = function(div,x,y)
     }
     return false;
 } 
-popUpMenu.prototype.getJsonDataofMenu = function(obj)
+popUpMenu.prototype.getJsonDataofMenu = function()
+{
+    var dataJson="[]";
+    switch(this.div.id)
+    {
+        case 'popupmenu':
+            dataJson=this.getJsonDataofPopMenu();
+        break;
+        case 'popupmenu-new':
+            dataJson=this.getJsonDataofNewMenu();
+        break;
+    }
+    return dataJson;
+}
+popUpMenu.prototype.getJsonDataofNewMenu = function()
 {
     var popUpFirstlist=new Array();
-    if(obj.type=="mpoint")
+    popUpFirstlist.push({
+                    name: 'menu_file_exportFloor',
+                    title: '&nbsp;&nbsp;导出当前'
+                });    
+    popUpFirstlist.push({
+                        name: 'menu_file_exportAll',
+                        title: '&nbsp;&nbsp;导出所有'
+                    });
+    var popUp2ndlist=new Array();
+    popUp2ndlist.push({
+                    name: 'menu_new_Building',
+                    title: '&nbsp;&nbsp;新建建筑物'
+                });  
+    popUp2ndlist.push({
+                    name: 'menu_new_Floor',
+                    title: '&nbsp;&nbsp;新建楼层'
+                });  
+    popUp2ndlist.push({
+                    name: 'menu_new_Block',
+                    title: '&nbsp;&nbsp;新建区块'
+                });  
+    popUp2ndlist.push({
+                    name: 'menu_new_Brand',
+                    title: '&nbsp;&nbsp;新建标志牌'
+                });  
+    popUp2ndlist.push({
+                    name: 'menu_new_MPoint',
+                    title: '&nbsp;&nbsp;新建测点'
+                });  
+    var popUp3rdlist=new Array();
+    popUp3rdlist.push({
+                    name: 'menu_manage_changeFloor',
+                    title: '&nbsp;&nbsp;选择楼层'
+                });
+    popUp3rdlist.push({
+                    name: 'menu_manage_Group',
+                    title: '&nbsp;&nbsp;管理分组'
+                });  
+    popUp3rdlist.push({
+                    name: 'menu_manage_Block',
+                    title: '&nbsp;&nbsp;管理区块'
+                });  
+    popUp3rdlist.push({
+                    name: 'menu_manage_Brand',
+                    title: '&nbsp;&nbsp;管理标志牌'
+                });  
+    popUp3rdlist.push({
+                    name: 'menu_manage_MPoint',
+                    title: '&nbsp;&nbsp;管理测点'
+                });   
+   var dataJson= [{
+                    name: 'menu_new',
+                    title: '&nbsp;&nbsp;<font color="red">新建</font>',
+                    icon: 'icons/newBlock.png',
+                    children: popUp2ndlist
+                },{
+                    name: 'menu_file',
+                    title: '&nbsp;&nbsp;<font color="red">文件</font>',
+                    icon: 'icons/newfile.png',
+                    children: popUpFirstlist
+                },  {
+                    name: 'menu_manage',
+                    title: '&nbsp;&nbsp;<font color="red">管理</font>',
+                    icon: 'icons/manageGroup.png',
+                    children: popUp3rdlist
+                }];
+    return dataJson;
+}
+popUpMenu.prototype.getJsonDataofPopMenu = function()
+{
+    var popUpFirstlist=new Array();
+    if(this.obj.type=="mpoint")
         popUpFirstlist.push({
                         name: 'menu_changeID',
                         title: '&nbsp;&nbsp;修改ID'
@@ -115,13 +206,13 @@ popUpMenu.prototype.getJsonDataofMenu = function(obj)
                         title: '&nbsp;&nbsp;删除'
                     });
     var titlehl="高亮";
-    if(obj.highlighted==true) titlehl="取消高亮";
+    if(this.obj.highlighted==true) titlehl="取消高亮";
     popUpFirstlist.push({
                         name: 'menu_highlight',
                         title: '&nbsp;&nbsp;'+titlehl
                     }); 
     var titleinv="显示";
-    if(obj.visible==true) titleinv="隐藏";
+    if(this.obj.visible==true) titleinv="隐藏";
     popUpFirstlist.push({
                         name: 'menu_invisible',
                         title: '&nbsp;&nbsp;'+titleinv

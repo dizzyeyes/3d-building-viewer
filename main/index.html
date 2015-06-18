@@ -9,33 +9,31 @@
     </head>
     <body >
 
+        <script src="libs/FileSaver.js"></script>
+        <script src="libs/jszip.min.js"></script>
+
+
         <script src="jquery-2.1.3.js"></script>
-        
+        <link rel="stylesheet" href="css/bootstrap-menu.css" />
+        <script src="libs/bootstrap-menu.js"></script>
+            
         <script src="libs/THREEx.KeyboardState.js"></script>
         <script src="libs/THREEx.FullScreen.js"></script>
         
-        
-        <link rel="stylesheet" href="css/bootstrap-menu.css" />
-        <script src="libs/bootstrap-prompts-alert.js"></script>
-        <script src="libs/bootstrap-menu.js"></script>
-            
-
         <script src="three.71.min.js"></script>
         <script src="js/ext_three.js"></script>
                 
-        <script src="libs/FileSaver.js"></script>
-        <script src="libs/jszip.min.js"></script>
         <script src="libs/stats.min.js"></script>
         <script src="libs/OBJLoader.js"></script>
         <script src="libs/CombinedCamera.js"></script>
         <script src="libs/Projector.js"></script>
         <script src="libs/Detector.js"></script>
-
-
+        
         <script src="js/BdViewer/tools/fadeInFadeOut.js"></script>
         
         <script src="js/BdViewer/tools/popUpMenu.js"></script>
         <script src="js/BdViewer/tools/popUpMenu/popmenuProcess.js"></script>
+        <script src="js/BdViewer/tools/popUpMenu/popmenuProcessNew.js"></script>
         
         <script src="js/BdViewer/tools/alertMsgTool.js"></script>
         
@@ -63,7 +61,7 @@
         
         <script src="js/BdViewer/BdViewer.js"></script>
         <script src="js/BdViewer/tools/tools.js"></script>
-        <script src="js/BdViewer/tools/events.js"></script>
+        <script src="js/BdViewer/edit/new.js"></script>
         <script src="js/BdViewer/edit/changeAll.js"></script>
         <script src="js/BdViewer/edit/changeData.js"></script>
         <script src="js/BdViewer/edit/changeScene.js"></script>
@@ -80,6 +78,7 @@
         <script src="js/BdViewer/classes/building.js"></script>
         <script src="js/BdViewer/classes/buildinglist.js"></script>
         
+        <script src="js/BdViewer/controls/events.js"></script>
         <script src="js/BdViewer/controls/control.js"></script>
         <script src="js/BdViewer/controls/ext_TransformControls.js"></script>
         <script src="js/BdViewer/controls/ext_OrbitControls.js"></script>
@@ -87,10 +86,12 @@
         <script>
             if ( ! Detector.webgl ) Detector.addGetWebGLMessage();//check whether webgl is supported.
             
-            var viewer = new BdViewer(document,'./data/BuildingList.xml');
-            viewer.Init();
+            var viewer = new BdViewer(document,'./data/BuildingList.xml');            
             var  msgTools=["jqTooltip",  "buble", "humane"];
+            viewer.stats.enable=true;
             viewer.msgTool=msgTools[0];
+            
+            viewer.Init();
             events();
             animate();
             
@@ -108,14 +109,7 @@
             }
             
             function onWindowResize() {                    
-                viewer.onWindowResize();
-                
-                viewer.fadeTool.MoveFloatLayer("table_add_template");
-                viewer.fadeTool.MoveFloatLayer('table_manage');
-                viewer.fadeTool.MoveFloatLayer('subtable_manage');
-                
-                $table.bootstrapTable('resetView');
-                $sub_table.bootstrapTable('resetView');
+                viewer.onWindowResize();                
             }
 
             function onKeyUp(event) {       

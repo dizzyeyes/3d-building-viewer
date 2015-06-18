@@ -1,4 +1,4 @@
-BdViewer.Floor= function(id,name,path,info,cpos) {
+BdViewer.Floor= function(id,name,path,viewer,info) {
         this.id = id;
         this.name = name;
         this.path = path;
@@ -8,9 +8,8 @@ BdViewer.Floor= function(id,name,path,info,cpos) {
             this.infoShort = info.slice(0,30);
         else this.infoShort = info;
         this.Init();
-        this.safe=true;   
-        if(cpos!=undefined)
-            this.camerapos=cpos;
+        this.safe=true; 
+        this.viewer = viewer;
     }
 BdViewer.Floor.prototype.Init = function(){        
         this.BlockList=new BdViewer._objList("BlockList");
@@ -246,13 +245,12 @@ BdViewer.Floor.prototype.removeBrand = function(brand){
     }
 
 BdViewer.Floor.prototype.serializeXML = function(){
-    if(this.camerapos==undefined) this.camerapos=camera.position;
     var rtn="";
     rtn+="<Floor";
     rtn+=" id=\""+this.id+"\"";
     rtn+=" name=\""+xmlStringReplace(this.name)+"\"";
     rtn+=" >";    
-    rtn+="<camera pos=\""+this.camerapos.toArray().toString()+"\"/>";
+    rtn+="<camera pos=\""+this.viewer.camera.position.toArray().toString()+"\"/>";
     rtn+=this.BlockList.serializeXML();
     rtn+=this.MPointList.serializeXML();
     rtn+=this.BrandList.serializeXML();
@@ -262,12 +260,11 @@ BdViewer.Floor.prototype.serializeXML = function(){
     return rtn;
     }
 BdViewer.Floor.prototype.serializeJSON = function(){    
-    if(this.camerapos==undefined) this.camerapos=camera.position;    
     var rtn="";
     rtn+="{\"Floor\":{";
     rtn+="\"-id\":\""+this.id+"\",";
     rtn+="\"-name\":\""+this.name.replace(/"/g,'\\"')+"\",";
-    rtn+="\"camerapos\":{\"-pos\":\""+this.camerapos.toArray().toString()+"\"},";
+    rtn+="\"camerapos\":{\"-pos\":\""+this.viewer.camera.position.toArray().toString()+"\"},";
     rtn+=this.BlockList.serializeJSON().slice(1,-1)+",";
     rtn+=this.MPointList.serializeJSON().slice(1,-1)+",";
     rtn+=this.BrandList.serializeJSON().slice(1,-1)+",";

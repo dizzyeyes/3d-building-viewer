@@ -1,3 +1,12 @@
+BdViewer.prototype.changeBdFloo = function(bid,fid)
+{    
+    this.params.building = bid;
+    this.params.floor = fid;
+    this.curBuilding = this.bdList.getAt(this.params.building);
+    if(this.curBuilding.getCount()==0)
+        this.readBuilding(this.bdList,this.curBuilding); 
+    this.curFloor = this.change_Floor_Scene(this.scene,this.curBuilding,this.params.floor);
+}
 BdViewer.prototype.highlightGroup = function(scene,curFloor,groupName,highlight)
 {
     this.scope.highlightGroup_Scene(scene,curFloor,groupName,highlight);
@@ -8,12 +17,12 @@ BdViewer.prototype.highlightObject = function(scene,id,highlight)
 }
 BdViewer.prototype.change_Floor_Scene = function(scene,curBuilding,id)
 {
-	newFloor=curBuilding.getAt(id);
+	var newFloor=this.curBuilding.getAt(id);
     if(newFloor==null||newFloor==undefined)
-        return false;
-	if(this.scope.change_Floor(curBuilding,newFloor)==false)
-        return false;
-	this.scope.change_Scene(scene,newFloor);
+        return 1;
+	if(this.scope.change_Floor(this.curBuilding,newFloor)==false)
+        return 2;
+	this.scope.change_Scene(this.scene,newFloor);
 	return newFloor;
 }
 BdViewer.prototype.checkObj = function(scene,curFloor,id)

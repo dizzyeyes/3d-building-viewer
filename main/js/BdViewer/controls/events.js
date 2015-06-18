@@ -80,6 +80,13 @@ BdViewer.prototype.onDocumentMouseDown = function( event ) {
             this.controls.enabled=false; 
             return;
         }
+        if(!this.popMenuNew.isInMenu(event.clientX,event.clientY))
+            this.popMenuNew.hide();
+        else
+        {                    
+            this.controls.enabled=false; 
+            return;
+        }
     }
     
     this.flag_moveBlock = this.params.mode_edit;
@@ -90,7 +97,7 @@ BdViewer.prototype.onDocumentMouseDown = function( event ) {
     this.raycaster.set( this.camera.position, vector.sub( this.camera.position ).normalize() );
 
     var intersects = this.raycaster.intersectObjects( this.scene.children ,true); 
-    
+    if(intersects.length==0) return;
     var index=0;
     if(intersects.length > index || (intersects[ index ].object instanceof THREE.BoxHelper))
         while(/*INTERSECTED != intersects[ index ].object&&*/intersects[ index ].object.visible==false||(intersects[ index ].object instanceof THREE.BoxHelper))
@@ -188,7 +195,10 @@ BdViewer.prototype.onDocumentMouseDown = function( event ) {
                     event.preventDefault();
                     if(this.popMenu.visible==true)
                          this.popMenu.hide();
-                    this.popMenu.show(this.curSelected,event.clientX,event.clientY);
+                    if(this.popMenuNew.visible==true)
+                         this.popMenuNew.hide();
+                    this.popMenu.selectobj(this.curSelected);
+                    this.popMenu.show(event.clientX,event.clientY);
                 }                 
                 this.msgToolkit.alertMsg(this.msgToolkit.getMsg(this.INTERSECTED.parent,this.curFloor));                
             }
@@ -196,7 +206,17 @@ BdViewer.prototype.onDocumentMouseDown = function( event ) {
     }
     else {
         if ( this.INTERSECTED )//点空了
-                this.unSelectObject(true);;
+                this.unSelectObject(true);
+        
+        if(event.button==THREE.MOUSE.RIGHT&&this.params.mode_edit)
+        {
+            event.preventDefault();
+            if(this.popMenu.visible==true)
+                 this.popMenu.hide();
+            if(this.popMenuNew.visible==true)
+                 this.popMenuNew.hide();
+            this.popMenuNew.show(event.clientX,event.clientY);
+        }
     }
 }
 BdViewer.prototype.onDocumentMouseUp = function( event ) {

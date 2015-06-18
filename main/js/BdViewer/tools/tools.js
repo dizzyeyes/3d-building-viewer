@@ -1,5 +1,5 @@
 
-BdViewer.prototype.xmlStringReplace = function(str)
+var xmlStringReplace = function(str)
 {
     return str.replace(/>/g,'&gt;').replace(/</g,'&lt;').replace(/"/g,'&quot;').replace(/'/g,"&apos;").replace(/&/g,'&amp;');
 }
@@ -7,23 +7,24 @@ BdViewer.prototype.upCaseFirst = function(str)
 {
     return str.toLowerCase().replace(/(\w)/,function(v){return v.toUpperCase()});
 }
-BdViewer.prototype.toLoadAll = function(bdList,path)
+BdViewer.prototype.toLoadAll = function(path)
 {
+    var bdList = this.bdList;
     var bdcnt=bdList.getCount();
     if(bdcnt==0)
     {
         bdList.Init();
-        this.scope.readBuildingList(path,bdList);
+        this.readBuildingList(path,bdList);
     }
     for(var bdi=0;bdi<bdcnt;bdi++)
     {
         var newbd=bdList.getAt(bdi);
-        this.scope.readBuilding(bdList,newbd);
+        this.readBuilding(bdList,newbd);
         var flcnt=newbd.getCount();
         for(var fli=0;fli<flcnt;fli++)
         {
             var newfloo=newbd.getAt(fli);
-            if(this.scope.readFloor(newbd,newfloo)==false)
+            if(this.readFloor(newbd,newfloo)==false)
             {
                 fli--;
                 flcnt--;
@@ -31,37 +32,42 @@ BdViewer.prototype.toLoadAll = function(bdList,path)
             
         }
     }
-    this.scope.curBuilding=bdList.getAt(0);
-    this.scope.curFloor=newbd.getAt(0);
+    this.curBuilding=bdList.getAt(0);
+    this.curFloor=newbd.getAt(0);
 }
-BdViewer.prototype.toLoadPart = function(bdList,path,bdid,flid)
+BdViewer.prototype.toLoadPart = function(path)
 {
+    var bdList = this.bdList;
+    var bdid = this.params.building;
+    var flid = this.params.floor;
     var bdcnt=bdList.getCount();
     var ret=false;
     if(bdcnt>0)
     {
-        ret=alertConfirm("是否重新加载整个楼群列表（将会清空所有建筑物及所有楼层）？");
+        ret=this.msgToolkit.alertConfirm("是否重新加载整个楼群列表（将会清空所有建筑物及所有楼层）？");
     }
     if(ret==true||bdcnt==0){            
         bdList.Init();
-        this.scope.readBuildingList(path,bdList);
+        this.readBuildingList(path,bdList);
     }
-     this.scope.curBuilding = bdList.getAt(bdid);
-     var newbd=this.scope.curBuilding;
-    this.scope.readBuilding(bdList,newbd);
-    this.scope.curFloor = newbd.getAt(flid);
-     var newfloo=this.scope.curFloor;
-    this.scope.readFloor(newbd,newfloo);
+     this.curBuilding = bdList.getAt(bdid);
+     var newbd=this.curBuilding;
+    this.readBuilding(bdList,newbd);
+    this.curFloor = newbd.getAt(flid);
+     var newfloo=this.curFloor;
+    this.readFloor(newbd,newfloo);
 }
-BdViewer.prototype.toSaveAll = function(bdList,type)
+BdViewer.prototype.toSaveAll = function(type)
 {    
+    this.toLoadAll(this.BuildingListXML);
+    var bdList = this.bdList;
     if(type!="json"&&type!="xml")
     {
-        this.scope.toMakeBlob("",type);
+        this.toMakeBlob("",type);
         return;
     }
     var zip = new JSZip();
-    zip.file("BuildingList."+type,toMakeBlobString(bdList,type)[2]);
+    zip.file("BuildingList."+type,this.toMakeBlobString(bdList,type)[2]);
     var buildingFolder =  zip.folder("buildings");
     var floorFolder =  zip.folder("floors");
     var iamgeFolder =  zip.folder("iamges");
@@ -71,16 +77,16 @@ BdViewer.prototype.toSaveAll = function(bdList,type)
     for(var bdi=0;bdi<bdcnt;bdi++)
     {
         var newbd=bdList.getAt(bdi);
-        // buildingFolder.file(upCaseFirst(newbd.id)+"."+type,toMakeBlobString(newbd,type)[2]);
+        // buildingFolder.file(this.upCaseFirst(newbd.id)+"."+type,this.toMakeBlobString(newbd,type)[2]);
         var buildingpathLength="./data/buildings/".length;
-        buildingFolder.file(newbd.path.slice(buildingpathLength),toMakeBlobString(newbd,type)[2]);
+        buildingFolder.file(newbd.path.slice(buildingpathLength),this.toMakeBlobString(newbd,type)[2]);
         var flcnt=newbd.getCount();        
         var floorpathLength="./data/floors/".length;
         for(var fli=0;fli<flcnt;fli++)
         {
             var newfloo=newbd.getAt(fli);
-            // floorFolder.file(upCaseFirst(newfloo.id)+"."+type,toMakeBlobString(newfloo,type)[2]);            
-            floorFolder.file(newfloo.path.slice(floorpathLength),toMakeBlobString(newfloo,type)[2]);
+            // floorFolder.file(this.upCaseFirst(newfloo.id)+"."+type,this.toMakeBlobString(newfloo,type)[2]);            
+            floorFolder.file(newfloo.path.slice(floorpathLength),this.toMakeBlobString(newfloo,type)[2]);
         }
     }
     zip.file("说明.txt","请将文件解压缩到3ddemo/data/路径下");
@@ -88,23 +94,27 @@ BdViewer.prototype.toSaveAll = function(bdList,type)
     // see FileSaver.js
     saveAs(content, "data.zip");
 }
+BdViewer.prototype.exportFloor = function(type)
+{
+    this.toSaveFile(this.curFloor,type);
+}
 BdViewer.prototype.toSaveFile = function(obj,type)
 {    
-    var outputStr=toMakeBlobString(obj,type);
+    var outputStr = this.toMakeBlobString(obj,type);
     output=outputStr[2];
     cansave=outputStr[0];
     if(!cansave)
     {
-        this.scope.toMakeBlob(obj,type);
+        this.toMakeBlob(obj,type);
         return;
     }
 
     var zip = new JSZip();
-    zip.file(upCaseFirst(obj.id)+"."+type,output);
+    zip.file(this.upCaseFirst(obj.id)+"."+type,output);
     zip.file("说明.txt","请将文件解压缩到3ddemo/data/路径下");
     var content = zip.generate({type:"blob"});
     // see FileSaver.js
-    saveAs(content, upCaseFirst(obj.id)+".zip");
+    saveAs(content, this.upCaseFirst(obj.id)+".zip");
 }
 BdViewer.prototype.toMakeBlobString = function(obj,type)
 {        
@@ -137,8 +147,8 @@ BdViewer.prototype.toMakeBlobString = function(obj,type)
 }
 BdViewer.prototype.toMakeBlob = function(obj,type)
 {
-    var outputStr=toMakeBlobString(obj,type);
-    this.scope.toShowBlob(outputStr);
+    var outputStr=this.toMakeBlobString(obj,type);
+    this.toShowBlob(outputStr);
 }
 BdViewer.prototype.toShowBlob = function(outputStr)
 {

@@ -1,4 +1,4 @@
-BdViewer.Brand= function(id,name,model,position,rotation,scale,texture,image,info) {
+BdViewer.Brand= function(id,name,model,position,rotation,scale,texture,image,info,modelbias,modelbaseHeight) {
         if(id!=undefined) this.id = id;
         if(name!=undefined) this.name = name;
         if(model!=undefined) this.model=model;
@@ -12,6 +12,12 @@ BdViewer.Brand= function(id,name,model,position,rotation,scale,texture,image,inf
         if(info.length>30)
             this.infoShort = info.slice(0,30);
         else this.infoShort = info;
+        
+        if(modelbias==undefined)  modelbias= new THREE.Vector3(0,0,50);
+        this.modelbias=modelbias;
+        
+        if(modelbaseHeight==undefined)  modelbaseHeight= {block:2,mpoint:0,brand:30};
+        this.modelbaseHeight=modelbaseHeight;
     }
 BdViewer.Brand.prototype.copy=function(brand)
 {    
@@ -34,7 +40,7 @@ BdViewer.Brand.prototype.serializeXML = function(){
     rtn+=" name=\""+xmlStringReplace(this.name)+"\"";
     rtn+=" >";
     rtn+=this.model.serializeXML();
-    var x = this.position.x - modelbias.x , y = this.position.y - modelbias.y - modelbaseHeight.brand, z = this.position.z-modelbias.z;
+    var x = this.position.x - this.modelbias.x , y = this.position.y - this.modelbias.y - this.modelbaseHeight.brand, z = this.position.z-this.modelbias.z;
     rtn+="<position px=\""+ x+"\" py=\""+ y+"\" pz=\""+ z+"\" />";
     rtn+="<rotation px=\""+this.rotation.x+"\" py=\""+this.rotation.y+"\" pz=\""+this.rotation.z+"\" />";
     rtn+="<scale px=\""+this.scale.x+"\" py=\""+this.scale.y+"\" pz=\""+this.scale.z+"\" />";
@@ -50,7 +56,7 @@ BdViewer.Brand.prototype.serializeJSON = function(){
     rtn+="\"-id\":\""+this.id+"\",";
     rtn+="\"-name\":\""+this.name.replace(/"/g,'\\"')+"\",";
     rtn+=this.model.serializeJSON().slice(1,-1)+",";
-    var x = this.position.x - modelbias.x , y = this.position.y - modelbias.y - modelbaseHeight.brand, z = this.position.z-modelbias.z;
+    var x = this.position.x - this.modelbias.x , y = this.position.y - this.modelbias.y - this.modelbaseHeight.brand, z = this.position.z-this.modelbias.z;
     rtn+="\"position\":{\"-px\":\""+x+"\",\"-py\":\""+y+"\",\"-pz\":\""+z+"\"},";
     rtn+="\"rotation\":{\"-px\":\""+this.rotation.x+"\",\"-py\":\""+this.rotation.y+"\",\"-pz\":\""+this.rotation.z+"\"},";
     rtn+="\"scale\":{\"-px\":\""+this.scale.x+"\",\"-py\":\""+this.scale.y+"\",\"-pz\":\""+this.scale.z+"\"},";

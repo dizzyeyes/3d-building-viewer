@@ -1,11 +1,12 @@
 BdViewer.prototype.loadFloor = function(scene,curFloor)
 {
     this.scope.clear_init_Scene(scene);    
-    if(curFloor.camerapos!=undefined)
-    {
-        this.scope.camera.position.copy(curFloor.camerapos);                
-        this.scope.camera.lookAt(this.scope.scene.position); 
-    }
+    if(curFloor.camerapos ==undefined)
+        this.curFloor.camerapos = new THREE.Vector3(-150,150,450);  
+
+    this.scope.camera.position.copy(curFloor.camerapos);                
+    this.scope.camera.lookAt(this.scope.scene.position); 
+
     this.loadBlockList(scene,curFloor);
     this.loadMPointList(scene,curFloor);
     this.loadBrandList(scene,curFloor);

@@ -22,10 +22,8 @@ BdViewer.prototype.readBuildingList = function(filename,bdList)
 BdViewer.prototype.readBuilding = function(bdList,building)
 {
     if(building.getCount()>0)
-    {
-        ret=alertConfirm("要重新加载 "+building.name+" 吗？已有"+building.getCount()+"个floor");
-        if(ret==false)  
-            return building;
+    { 
+        return building;
     }
     var xmlDoc = this.xml_loadFile(building.path,null);
     if(xmlDoc==null)
@@ -39,7 +37,7 @@ BdViewer.prototype.readBuilding = function(bdList,building)
         var id=items[i].getAttribute("id") ;
         var name=items[i].getAttribute("name");
         var path=items[i].getAttribute("path");
-        var floo= new BdViewer.Floor(id, name, path);
+        var floo= new BdViewer.Floor(id, name, path,this);
         building.addItem(floo);
     }
     var infoItem= xmlDoc.getElementsByTagName("info");
@@ -49,10 +47,8 @@ BdViewer.prototype.readBuilding = function(bdList,building)
 BdViewer.prototype.readFloor = function(curBuilding,floor)
 {
     if(floor.getCount()>0)
-    {
-        ret=alertConfirm("要重新加载 "+curBuilding.name+"-"+floor.name+" 吗？已经有"+floor.getCount()+"个模型");
-        if(ret==false)  
-            return floor;
+    { 
+        return floor;
     }
     
     var xmlDoc = this.xml_loadFile(floor.path,null);
@@ -142,19 +138,19 @@ BdViewer.prototype.readList = function(floor,xmlDoc,op)
         if(op=="Block")
         {
             var posElement = new THREE.Vector3(posNode[0].getAttribute("px")/1+this.scope.modelbias.x,posNode[0].getAttribute("py")/1+this.scope.modelbias.y+this.scope.modelbaseHeight.block,posNode[0].getAttribute("pz")/1+this.scope.modelbias.z);
-            var block= new BdViewer.Block(id, name, modelElement,posElement,rotElement,scaleElement,textureElement,info);
+            var block= new BdViewer.Block(id, name, modelElement,posElement,rotElement,scaleElement,textureElement,info,this.modelbias,this.modelbaseHeight);
             floor.addBlockItem(block);
         }
         if(op=="MPoint")
         {
             var posElement = new THREE.Vector3(posNode[0].getAttribute("px")/1+this.scope.modelbias.x,posNode[0].getAttribute("py")/1+this.scope.modelbias.y+this.scope.modelbaseHeight.mpoint,posNode[0].getAttribute("pz")/1+this.scope.modelbias.z);
-            var mpoint= new BdViewer.MPoint(id, name, type, modelElement,posElement,rotElement,scaleElement,textureElement,info);
+            var mpoint= new BdViewer.MPoint(id, name, type, modelElement,posElement,rotElement,scaleElement,textureElement,info,this.modelbias,this.modelbaseHeight);
             floor.addMPointItem(mpoint);
         }
         if(op=="Brand")
         {
             var posElement = new THREE.Vector3(posNode[0].getAttribute("px")/1+this.scope.modelbias.x,posNode[0].getAttribute("py")/1+this.scope.modelbias.y+this.scope.modelbaseHeight.brand,posNode[0].getAttribute("pz")/1+this.scope.modelbias.z);
-            var brand= new BdViewer.Brand(id, name, modelElement,posElement,rotElement,scaleElement,textureElement,imageElement,info);
+            var brand= new BdViewer.Brand(id, name, modelElement,posElement,rotElement,scaleElement,textureElement,imageElement,info,this.modelbias,this.modelbaseHeight);
             floor.addBrandItem(brand);
         }
     }
