@@ -18,7 +18,7 @@ BdViewer.prototype.onMouseWheel = function( event ) {
     
 }
 BdViewer.prototype.onDoubleClick = function(event){
-    if(this.params.mode_edit)
+    if(this.params.mode_edit&&this.INTERSECTED )
     {
        // console.log("缩放框");
         this.transControl.attach( this.INTERSECTED );
