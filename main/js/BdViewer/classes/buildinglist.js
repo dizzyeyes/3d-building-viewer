@@ -30,6 +30,16 @@ BdViewer.BuildingList.prototype.removeItem = function(item)
 {
     return this.List.removeItem(item); 
 }
+BdViewer.BuildingList.prototype.getPosById = function(id)
+{
+    var cnt=this.getCount();
+    for(var item=0; item<cnt;item++)
+    {
+        if(this.getAt(item).id==id)
+            return item;
+    }    
+    return null;
+}
 BdViewer.BuildingList.prototype.getObjectById = function(id)
 {
     var cnt=this.getCount();
@@ -37,8 +47,7 @@ BdViewer.BuildingList.prototype.getObjectById = function(id)
     {
         if(this.getAt(item).id==id)
             return this.getAt(item);
-    }
-    
+    }    
     return null;
 }
 BdViewer.BuildingList.prototype.getJSONStringofBuildings = function()

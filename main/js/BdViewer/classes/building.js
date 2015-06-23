@@ -25,6 +25,16 @@ BdViewer.Building.prototype.removeAt = function(itemid)
 {
     return this.List.removeAt(itemid); 
 }
+BdViewer.Building.prototype.getPosById = function(id)
+{
+    var cnt=this.getCount();
+    for(var item=0; item<cnt;item++)
+    {
+        if(this.getAt(item).id==id)
+            return item;
+    }    
+    return null;
+}
 BdViewer.Building.prototype.getObjectById = function(id)
 {
     var cnt=this.getCount();

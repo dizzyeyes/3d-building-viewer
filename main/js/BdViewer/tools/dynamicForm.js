@@ -1,21 +1,29 @@
-function dynamicForm(viewer,title,id){
-    var scope = this;
+function dynamicForm(viewer,title,id){    
     if(id==undefined) id="form-new";
     this.viewer=viewer;
     this.initForm(id);
-    this.visible=false;   
     this.fadeTool= new fadeInOutTool();
-    this.enabled = true;
     if(title==undefined) title='untitled';
     this.title=title;
+    
+    this.floor="";
+    this.building="";
+    
+    this.init();
     
     document.dynamicform = this;
     window.dynamicform = this;
    
     document.addEventListener( 'mousemove', this.onMouseMove, false );
     window.addEventListener( 'resize', this.onWindowResize, false );
-} 
+}
 
+dynamicForm.prototype.init = function()
+{    
+    this.enabled = true;
+    this.visible = false;   
+    this.obj = {id:"",name:"",info:"",model:"",image:"",tag:""};
+}
 dynamicForm.prototype.onMouseMove = function(event)
 {
     this.dynamicform.fadeTool.onMoveDiv(event);
@@ -52,11 +60,25 @@ dynamicForm.prototype.hide = function()
 {                
     this.div.style.display="none";
     this.clearForm();
+    this.init();
     this.visible=false;
+}
+dynamicForm.prototype.getBdFloo = function(){    
+    if(this.floor==="")
+    {        
+        if(this.viewer.curFloor!=undefined)
+            this.floor=this.viewer.curBuilding.getPosById(this.viewer.curFloor.id);
+    }
+    if(this.building==="")
+    {        
+        if(this.viewer.curBuilding!=undefined)
+            this.building=this.viewer.bdList.getPosById(this.viewer.curBuilding.id);
+    }
 }
 dynamicForm.prototype.show = function(x,y){
     if(this.enabled==false) return;
-    this.clearForm();
+    this.clearForm();    
+    this.getBdFloo();
     var data=this.getJsonDataofForm();
     this.fillForm(data);
     this.fillActioin();

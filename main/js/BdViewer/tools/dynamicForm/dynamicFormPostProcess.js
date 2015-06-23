@@ -24,7 +24,12 @@ dynamicForm.prototype.postprocess = function(output)
         case '新建标志牌':
             this.viewer.newBrand_json(data);
         break;
+        case '更改ID':
+            this.viewer.changeID_json(data);
+        break;
         case '更换楼层':
+            this.building = data.Building;
+            this.floor = data.Floor;
             console.log('already changed floor',data);
         break;
     }

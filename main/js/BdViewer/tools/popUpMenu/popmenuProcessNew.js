@@ -3,6 +3,7 @@ popUpMenu.prototype.processNew = function(op)
     console.log("处理操作："+op);
     switch(op)
     {
+//==============================================//
         case 'menu_file_exportFloor':
             this.exportFloor();
             console.log(op);
@@ -11,7 +12,7 @@ popUpMenu.prototype.processNew = function(op)
             this.exportAll();
             console.log(op);
         break;
-
+//==============================================//
         case 'menu_new_Building':
             this.newBuilding();
             console.log(op);
@@ -34,9 +35,10 @@ popUpMenu.prototype.processNew = function(op)
             this.newMPoint();
             console.log(op);
         break;
+//==============================================//
         
         case 'menu_manage_changeFloor':
-            this.changeFloor(1,2);//change to building 1, floor 2 (count from zero)
+            this.changeFloor();//change to building 1, floor 2 (count from zero)
             console.log(op);
         break;
         
@@ -53,6 +55,7 @@ popUpMenu.prototype.processNew = function(op)
         case 'menu_manage_MPoint':
             console.log(op);
         break;
+//==============================================//
     }
 }
 popUpMenu.prototype.exportFloor = function()
@@ -64,7 +67,7 @@ popUpMenu.prototype.exportAll = function()
     this.viewer.toSaveAll('xml');
 }
 
-popUpMenu.prototype.changeFloor = function(bid,fid)
+popUpMenu.prototype.changeFloor = function()
 {    
     this.viewer.changeFloor_Form();
     //this.viewer.changeBdFloo(bid,fid);

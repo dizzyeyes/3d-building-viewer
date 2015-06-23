@@ -17,24 +17,28 @@ dynamicForm.prototype.fillActioin = function (){
     var listBuilding = document.getElementById('form_input_List_Building');
     var listFloor = document.getElementById('form_input_List_Floor');
     
-    listBuilding.parent = this;
-    listBuilding.floor = listFloor.value;
-    listBuilding.onchange = this.changeBuidlingList;
+    if(listBuilding!=null)
+    {
+        listBuilding.parent = this;
+        listBuilding.floor = listFloor.value;
+        listBuilding.onchange = this.changeBuidlingList;
+    }
     
-    listFloor.parent = this;
-    listFloor.building = listBuilding.value;
-    listFloor.onchange = this.changeFloorList;
+    if(listFloor!=null)
+    {
+        listFloor.parent = this;
+        listFloor.building = listBuilding.value;
+        listFloor.onchange = this.changeFloorList;
+    }
     
  }
 dynamicForm.prototype.changeBuidlingList = function(event)
 {    
-    this.parent.clearForm();
     this.parent.viewer.changeBdFloo(this.value,0);
     this.parent.show();
 }
 dynamicForm.prototype.changeFloorList = function(event)
 {    
-    this.parent.clearForm();
     this.parent.viewer.changeBdFloo(this.building,this.value);
     this.parent.show();
 }
@@ -82,15 +86,13 @@ dynamicForm.prototype.process = function()
     for(var item=0;item<outputobj.length;item++)
     {
         var inputItem = outputobj.item(item);
-        if(inputItem.value=="")
+        if(inputItem.type!='hidden')
         {
-            inputItem.style.border = "2px solid #ed2d11";
-            inputItem.placeholder = "不能为空";
-            inputItem.onblur = this.parent.defaultStyle;
-            inputItem.onmouseout = this.parent.defaultStyle;
-            inputItem.onmouseover = this.parent.prettyStyle;
-            inputItem.onfocus = this.parent.prettyStyle;
-            return;
+            if(inputItem.value=="")
+            {
+                this.parent.wrongInputHighLight(inputItem.name);
+                return;
+            }
         }
         data[inputItem.name] = inputItem.value;
     }
@@ -99,12 +101,7 @@ dynamicForm.prototype.process = function()
         var inputItem = outputobjtextarea.item(item); 
         if(inputItem.value=="")
         {
-            inputItem.style.border = "1px solid #ed2d11";
-            inputItem.placeholder = "不能为空";
-            inputItem.onblur = this.parent.defaultStyle;
-            inputItem.onmouseout = this.parent.defaultStyle;
-            inputItem.onmouseover = this.parent.prettyStyle;
-            inputItem.onfocus = this.parent.prettyStyle;
+            this.parent.wrongInputHighLight(inputItem.name);
             return;
         }
         data[inputItem.name] = inputItem.value;
@@ -124,10 +121,39 @@ dynamicForm.prototype.process = function()
         this.parent.hide();
         this.parent.viewer.unlockMenu(true);
     }
+    else 
+    {
+        console.log(rtn);
+        this.parent.wrongInputHighLight(rtn);
+    }
+}
+dynamicForm.prototype.wrongInputHighLight = function(name)
+{
+    var form = this.div.children[0];
+    var inputItem = form[name];
+    
+    inputItem.style.border = "2px solid #ed2d11";
+    inputItem.placeholder = "输入错误";
+    inputItem.onblur = this.defaultStyle;
+    inputItem.onmouseout = this.defaultStyle;
+    inputItem.onmouseover = this.prettyStyle;
+    inputItem.onfocus = this.prettyStyle;
 }
 dynamicForm.prototype.cancel = function()
 {
-    this.parent.hide();
     console.log('取消: ');
+    if(this.parent.title=="更换楼层")
+    {        
+        var outputobjSelect=this.parent.div.getElementsByTagName('select');
+        var data = {};
+        for(var item=0;item<outputobjSelect.length;item++)
+        {
+            var inputItem = outputobjSelect.item(item); 
+            data[inputItem.name] = inputItem.value;
+        }
+        if(!(this.parent.building===data.Building/1&&this.parent.floor===data.Floor/1))
+            this.parent.viewer.changeBdFloo(this.parent.building,this.parent.floor);
+    }
+    this.parent.hide();
     this.parent.viewer.unlockMenu(true);
 }

@@ -49,7 +49,10 @@
                         {
                             html.push(
                                 '<label for="'+c.id+'">'+c.title+'</label>',
-                                '<'+c.divName+ ' name=' +c.name+ ' id=' +c.id+' class='+c.className +(' type='+c.type||0)+' placeholder='+c.holder+'>');
+                                (c.oldvalue!==undefined &&c.oldvalue!==null &&c.oldvalue!=='' ? ('<input name="old'+c.name+'" type="hidden" value='+c.oldvalue+'></input>') : ''),
+                                '<'+c.divName+ ' name=' +c.name+ ' id=' +c.id,
+                                ' class='+c.className +' type='+c.type+' placeholder='+c.holder+' value='+c.value+'>',
+                                c.innerHTML);
 
                             $.each(c.children || [], function(i, cc) {
                                 html.push(

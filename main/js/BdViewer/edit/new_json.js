@@ -22,3 +22,7 @@ BdViewer.prototype.newGroup_json = function(dataJson)
 {        
     console.log('new_group',dataJson);
 }
+BdViewer.prototype.changeID_json = function(dataJson)
+{        
+    console.log('new_group',dataJson);
+}

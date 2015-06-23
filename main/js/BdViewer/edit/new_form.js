@@ -39,3 +39,10 @@ BdViewer.prototype.changeFloor_Form = function()
     this.form.title = '更换楼层';
     this.form.show();    
 }
+BdViewer.prototype.changeID_Form = function(obj)
+{        
+    this.unlockMenu(false);
+    this.form.title = '更改ID';
+    this.form.obj = obj;
+    this.form.show();    
+}

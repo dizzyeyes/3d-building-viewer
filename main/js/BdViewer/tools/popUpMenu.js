@@ -203,8 +203,7 @@ popUpMenu.prototype.getJsonDataofNewMenu = function()
 popUpMenu.prototype.getJsonDataofPopMenu = function()
 {
     var popUpFirstlist=new Array();
-    if(this.obj.type=="mpoint")
-        popUpFirstlist.push({
+    popUpFirstlist.push({
                         name: 'menu_changeID',
                         title: '&nbsp;&nbsp;修改ID'
                     });    

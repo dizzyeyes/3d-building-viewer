@@ -6,6 +6,7 @@ dynamicForm.prototype.getJsonDataofFormNew = function()
     {
         case '新建分组':
         case '新建建筑':
+        case '更改ID':
             formFirstlist.push(obj.id);
             formFirstlist.push(obj.name);
             formFirstlist.push(obj.info);
@@ -74,13 +75,15 @@ dynamicForm.prototype.getObjects = function()
     var form = this;
     
     dataJson.id={
+                oldvalue: form.obj.id,
                 id: 'form_input_ID',
                 name: 'id',
                 title: 'ID',
                 holder: '请输入ID...',
                 divName: 'input',
                 type: 'text',
-                className: 'span4'
+                className: 'span4',
+                value: form.obj.id
                 };
     dataJson.name={
                 id: 'form_input_Name',
@@ -89,7 +92,8 @@ dynamicForm.prototype.getObjects = function()
                 holder: '请输入名称...',
                 divName: 'input',
                 type: 'text',
-                className: 'span4'
+                className: 'span4',
+                value: form.obj.name
                 };
     dataJson.model={
                 id: 'form_input_Model',
@@ -98,7 +102,8 @@ dynamicForm.prototype.getObjects = function()
                 holder: '请输入模型文件名称...',
                 divName: 'input',
                 type: 'text',
-                className: 'span4'
+                className: 'span4',
+                value: form.obj.model
                 };
     dataJson.info={
                 id: 'form_input_Info',
@@ -107,7 +112,8 @@ dynamicForm.prototype.getObjects = function()
                 holder: '请输入信息...',
                 divName: 'textarea',
                 type: 'textarea',
-                className: '"span4 area"'
+                className: '"span4 area"',
+                innerHTML: form.obj.info
                 };
     dataJson.image={
                 id: 'form_input_Image',
@@ -116,7 +122,8 @@ dynamicForm.prototype.getObjects = function()
                 holder: '请输入贴图文件...',
                 divName: 'input',
                 type: 'text',
-                className: 'span4'
+                className: 'span4',
+                value: form.obj.image
                 };
     dataJson.tag={
                 id: 'form_input_Tag',
@@ -125,7 +132,8 @@ dynamicForm.prototype.getObjects = function()
                 holder: '请输入标签...',
                 divName: 'input',
                 type: 'text',
-                className: 'span4'
+                className: 'span4',
+                value: form.obj.tag
                 };
     dataJson.listcontent=[{
                     id: 'form_button_ok',

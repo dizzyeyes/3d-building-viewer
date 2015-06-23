@@ -4,9 +4,8 @@ popUpMenu.prototype.process = function(op)
     switch(op)
     {
         case 'menu_changeID':
-            var row={}; row.id=this.obj.modelid; row.name=this.obj.modelname;
-            this.fromMenu=true;
-            changeMPname_docm(obj,row);
+            var row={}; row.id=this.obj.modelid; row.name=this.obj.modelname; row.info=this.obj.info;
+            this.viewer.changeID_Form(row);
         break;
         case 'menu_copy':
             this.copyObject_menu();
@@ -22,15 +21,15 @@ popUpMenu.prototype.process = function(op)
         break;
         case 'menu_low_tmp':
             this.viewer.blockparams.temperature=0;
-            this.updateGUI_temp_menu();            
+            this.update_temp_menu();            
         break;
         case 'menu_mid_tmp':
             this.viewer.blockparams.temperature=1;
-            this.updateGUI_temp_menu();
+            this.update_temp_menu();
         break;
         case 'menu_high_tmp':
             this.viewer.blockparams.temperature=2;
-            this.updateGUI_temp_menu();
+            this.update_temp_menu();
         break;
     }
 }
@@ -57,7 +56,7 @@ popUpMenu.prototype.setVisible_menu = function()
         this.viewer.objVisibleChange(this.viewer.scene,this.obj.modelid,true);
     }
 }
-popUpMenu.prototype.updateGUI_temp_menu = function()
+popUpMenu.prototype.update_temp_menu = function()
 {    
     var color= new THREE.Color(this.viewer.colorlist[this.viewer.blockparams.temperature]/1);
     this.viewer.changeObjColor(this.viewer.scene,this.viewer.curFloor,this.viewer.blockparams.ID,color.getHex());
