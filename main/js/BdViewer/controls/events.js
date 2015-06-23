@@ -71,6 +71,11 @@ BdViewer.prototype.onDocumentMouseMove = function( event ) {
 }
 BdViewer.prototype.onDocumentMouseDown = function( event ) {
     this.msgToolkit.hideMenuD();
+    if(this.form.isInForm(event.clientX,event.clientY))
+    {                   
+        this.controls.enabled=false; 
+        return;
+    }
     if(event.button!=THREE.MOUSE.RIGHT||!this.params.mode_edit)
     {
         if(!this.popMenu.isInMenu(event.clientX,event.clientY))

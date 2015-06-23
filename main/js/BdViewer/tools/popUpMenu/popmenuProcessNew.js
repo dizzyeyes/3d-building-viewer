@@ -13,20 +13,25 @@ popUpMenu.prototype.processNew = function(op)
         break;
 
         case 'menu_new_Building':
+            this.newBuilding();
             console.log(op);
         break;
 
         case 'menu_new_Floor':
+            this.newFloor();
             console.log(op);
         break;
 
         case 'menu_new_Block':
+            this.newBlock();
             console.log(op);
         break;
         case 'menu_new_Brand':
+            this.newBrand();
             console.log(op);
         break;
         case 'menu_new_MPoint':
+            this.newMPoint();
             console.log(op);
         break;
         
@@ -61,26 +66,27 @@ popUpMenu.prototype.exportAll = function()
 
 popUpMenu.prototype.changeFloor = function(bid,fid)
 {    
-    this.viewer.changeBdFloo(bid,fid);
+    this.viewer.changeFloor_Form();
+    //this.viewer.changeBdFloo(bid,fid);
 }
 
 popUpMenu.prototype.newBuilding = function()
 {    
-    this.viewer.newBuilding();
+    this.viewer.newBuilding_Form();
 }
 popUpMenu.prototype.newFloor = function()
 {    
-    this.viewer.newFloor();
+    this.viewer.newFloor_Form();
 }
 popUpMenu.prototype.newBlock = function()
 {    
-    this.viewer.newBlock();
+    this.viewer.newBlock_Form();
 }
 popUpMenu.prototype.newBrand = function()
 {    
-    this.viewer.newBrand();
+    this.viewer.newBrand_Form();
 }
 popUpMenu.prototype.newMPoint = function()
 {    
-    this.viewer.newMPoint();
+    this.viewer.newMPoint_Form();
 }

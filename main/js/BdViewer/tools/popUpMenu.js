@@ -5,13 +5,14 @@ function popUpMenu(id,viewer){
     this.visible=false;
     this.fromMenu=false;    
     this.fadeTool= new fadeInOutTool();
+    this.enabled = true;
 }
 popUpMenu.prototype.initMenu = function(id){
     this.div = document.createElement("div");  
     this.div.id=id;  
     this.div.className="bs-menu";
     this.div.style.display="none";  
-    this.div.style.zIndex=100;  
+    this.div.style.zIndex=100;
     document.body.appendChild(this.div);   
 }
 
@@ -44,7 +45,8 @@ popUpMenu.prototype.selectobj = function(obj)
 {          
     this.obj=obj;
 }
-popUpMenu.prototype.show = function(x,y){    
+popUpMenu.prototype.show = function(x,y){
+    if(this.enabled==false) return;
     this.clearMenu();
     var data=this.getJsonDataofMenu();
     this.fillMenu(data);
@@ -172,20 +174,29 @@ popUpMenu.prototype.getJsonDataofNewMenu = function()
                     title: '&nbsp;&nbsp;管理测点'
                 });   
    var dataJson= [{
+                    name: 'menu_file',
+                    title: '&nbsp;&nbsp;<font color="red">文件</font>',
+                    icon: 'icons/Export.png',
+                    children: popUpFirstlist
+                }, {
                     name: 'menu_new',
                     title: '&nbsp;&nbsp;<font color="red">新建</font>',
                     icon: 'icons/newBlock.png',
                     children: popUp2ndlist
-                },{
-                    name: 'menu_file',
-                    title: '&nbsp;&nbsp;<font color="red">文件</font>',
-                    icon: 'icons/newfile.png',
-                    children: popUpFirstlist
-                },  {
+                }, {
                     name: 'menu_manage',
                     title: '&nbsp;&nbsp;<font color="red">管理</font>',
                     icon: 'icons/manageGroup.png',
                     children: popUp3rdlist
+                },{
+                    name: 'menu_reload',
+                    title: '&nbsp;&nbsp;<font color="red">重新加载</font>',
+                    icon: 'icons/Import.png',
+                    children: [{
+                        name: 'menu_reload_reload',
+                        title: '&nbsp;&nbsp;重新加载',
+                        url: './'
+                    }]
                 }];
     return dataJson;
 }

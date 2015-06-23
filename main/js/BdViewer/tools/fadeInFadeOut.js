@@ -1,5 +1,7 @@
 function fadeInOutTool(){
     this.scope=this;
+    this.myDragDiv=null;
+    this.enableOpacity=true;
 }
 	//底层共用
     var iBase = {
@@ -83,26 +85,26 @@ fadeInOutTool.prototype.MoveFloatLayer = function(divid,x,y) {
     }
     
 fadeInOutTool.prototype.clickOnDiv = function(oDiv,event) {
-        myDragDiv = oDiv;
+        this.myDragDiv = oDiv;
         begin = true;
         oDiv.style.cursor = "hand";
         pxDrag = oDiv.style.left.slice(0,-2)/1 - event.clientX;
         pyDrag = oDiv.style.top.slice(0,-2)/1 - event.clientY;
     }
 fadeInOutTool.prototype.onMoveDiv = function(event) {
-        if (myDragDiv != null && typeof (myDragDiv) != "undefined") {
+        if (this.myDragDiv != null && typeof (this.myDragDiv) != "undefined") {
             if (begin) {
-                if (enableOpacity) { myDragDiv.style.filter = "Alpha(opacity=30)"; }  // 滤镜 
-                myDragDiv.style.left = pxDrag + event.clientX+'px';
-                myDragDiv.style.top = pyDrag + event.clientY+'px';
+                if (this.enableOpacity) { this.myDragDiv.style.filter = "Alpha(opacity=30)"; }  // 滤镜 
+                this.myDragDiv.style.left = pxDrag + event.clientX+'px';
+                this.myDragDiv.style.top = pyDrag + event.clientY+'px';
             }
         }
     }
 fadeInOutTool.prototype.onUpDiv = function() {
-        if (myDragDiv != null && typeof (myDragDiv) != "undefined") {
+        if (this.myDragDiv != null && typeof (this.myDragDiv) != "undefined") {
             begin = false;
-            if (enableOpacity) { myDragDiv.style.filter = "Alpha(opacity=100)"; } // 滤镜 
-            myDragDiv.style.cursor = "default";
-            myDragDiv = null;
+            if (this.enableOpacity) { this.myDragDiv.style.filter = "Alpha(opacity=100)"; } // 滤镜 
+            this.myDragDiv.style.cursor = "default";
+            this.myDragDiv = null;
         }
     }

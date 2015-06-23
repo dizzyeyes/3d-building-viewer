@@ -83,6 +83,8 @@ function BdViewer(body,xmlFileName) {
     this.msgToolkit = new alertMsgTool(this);
     
     this.fadeTool = new fadeInOutTool();
+    
+    this.form = new dynamicForm(this);
 }
 
 BdViewer.prototype.Init=function(){
