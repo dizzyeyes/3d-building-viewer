@@ -139,7 +139,7 @@ BdViewer.prototype.newMPoint_json = function(dataJson)
         return;
     }
     this.flag_addMPoint=true;
-    this.curMPoint=mpoint;
+    this.curMPoint = mpoint;
     this.msgToolkit.alertInfo('开始添加测点，按"ESC"键结束添加');
 }
 BdViewer.prototype.newGroup_json = function(dataJson)

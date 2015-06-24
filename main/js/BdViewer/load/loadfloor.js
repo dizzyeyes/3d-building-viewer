@@ -40,7 +40,7 @@ BdViewer.prototype.loadBrandList = function (scene,curFloor)
     }
         
 }
-BdViewer.prototype.loadBlock = function (scene,block,blocktype,isFromLocal)
+BdViewer.prototype.loadBlock = function (scene,block,blocktype)
 {
     var id = block.id;
     var name = block.name;
@@ -51,13 +51,6 @@ BdViewer.prototype.loadBlock = function (scene,block,blocktype,isFromLocal)
     var rot = block.rotation;
     var scale = block.scale;
     var obj;
-    
-    if(isFromLocal)
-    {
-        getFileContentofBlock(scene,block,blocktype,'inputModelFake');
-       
-        return;
-    }
     
     var message=block.name;
     var canvas1,context1,texture1;
@@ -116,7 +109,7 @@ BdViewer.prototype.loadBlock = function (scene,block,blocktype,isFromLocal)
     }    
 }
 
-BdViewer.prototype.loadBrand = function (scene,brand,isFromLocalimg,isFromLocal)
+BdViewer.prototype.loadBrand = function (scene,brand)
 {
     var id = brand.id;
     var name = brand.name;
@@ -127,12 +120,6 @@ BdViewer.prototype.loadBrand = function (scene,brand,isFromLocalimg,isFromLocal)
     var rot = brand.rotation;
     var scale = brand.scale;
     
-    if(isFromLocal)
-    {
-        getFileContentofBlock(scene,brand,"brand",'inputModelFake');
-        
-        return;
-    }
     switch(type)
     {
         case 'obj':
