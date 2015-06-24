@@ -3,14 +3,18 @@ function alertMsgTool(viewer) {
     this.fadeTool= new fadeInOutTool();
     this.myMessages = ['menuDinfo','menuDwarning','menuDerror','menuDsuccess']; // define the messages types		 
     this.ismenuDShow=false;
+    this.init();
+}
+alertMsgTool.prototype.init = function()
+{
+    this.createMenuDs();
 }
 alertMsgTool.prototype.alertMsg = function(message)
 {    
     if(this.viewer.msgTool=="humane") this.humaneMsg(message);
     if(this.viewer.msgTool=="buble") this.bubleMsg(message);
     if(this.viewer.msgTool=="jqTooltip") this.jqToolTipMsg(message);
-    if(this.viewer.msgTool=="menuD") this.menuDInfo(message);
-    
+    if(this.viewer.msgTool=="menuD") this.menuDInfo(message);    
 }
 alertMsgTool.prototype.getMsg = function(obj,curFloor)
 {
@@ -59,6 +63,14 @@ alertMsgTool.prototype.alertConfirm = function(info,process,params)
         confirm(info,process,params);
     else 
         return _originalConfirm(info);
+}
+alertMsgTool.prototype.alertSuccess = function(message)
+{    
+    this.menuDSuccess(this.prepareMsgStr(message));
+}
+alertMsgTool.prototype.alertWarning = function(message)
+{    
+    this.menuDWarning(this.prepareMsgStr(message));
 }
 alertMsgTool.prototype.alertError = function(message)
 {    

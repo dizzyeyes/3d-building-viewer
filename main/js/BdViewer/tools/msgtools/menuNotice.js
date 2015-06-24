@@ -11,7 +11,7 @@ alertMsgTool.prototype.menuDWarning = function(msg)
 {
     this.tiggerMenuDNotice('menuDwarning',msg);
 }
-alertMsgTool.prototype.menuDSucess = function(msg)
+alertMsgTool.prototype.menuDSuccess = function(msg)
 {
     this.tiggerMenuDNotice('menuDsuccess',msg);
 }

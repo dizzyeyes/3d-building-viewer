@@ -17,8 +17,14 @@ BdViewer.prototype.onKeyDown = function(event) {
     {
         case 116://F5
             event.preventDefault();
-            var ret = alertConfirm("是否重新载入？",windowRefresh);
-            return;
+        break;
+        case 112://F1
+            var help_msg = "帮助";
+            help_msg += "<br>1、左键点击区块、测点、标志牌，显示信息；";
+            help_msg += "<br>2、右键区块、测点、标志牌，可选择编辑或设置温度；";
+            help_msg += "<br>3、右键空白处，进行“导出、添加、管理、重载”操作；";
+            this.msgToolkit.alertWarning(help_msg);
+            event.preventDefault();
         break;
         case 27://ESC
             event.preventDefault();  
