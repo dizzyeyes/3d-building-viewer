@@ -7,6 +7,15 @@ BdViewer.prototype.onWindowResize = function(){
     this.scope.renderer.setSize( window.innerWidth, window.innerHeight ); 
 } 
 
+BdViewer.prototype.showHelpMsg = function() {
+    var help_msg = "帮助(F1)";
+    help_msg += "<br>1、左键拖拽移动物体；";
+    help_msg += "<br>2、滑动滚轮实现缩放；";
+    help_msg += "<br>3、左键点击区块、测点、标志牌，显示信息；";
+    help_msg += "<br>4、右键区块、测点、标志牌，可选择编辑或设置温度；";
+    help_msg += "<br>5、右键空白处，进行“导出、添加、管理、重载”操作；";
+    this.msgToolkit.alertWarning(help_msg);
+}
 BdViewer.prototype.onKeyUp = function(event) {
     this.controls.enabled=true;
 }
@@ -19,11 +28,7 @@ BdViewer.prototype.onKeyDown = function(event) {
             event.preventDefault();
         break;
         case 112://F1
-            var help_msg = "帮助";
-            help_msg += "<br>1、左键点击区块、测点、标志牌，显示信息；";
-            help_msg += "<br>2、右键区块、测点、标志牌，可选择编辑或设置温度；";
-            help_msg += "<br>3、右键空白处，进行“导出、添加、管理、重载”操作；";
-            this.msgToolkit.alertWarning(help_msg);
+            this.showHelpMsg();
             event.preventDefault();
         break;
         case 27://ESC

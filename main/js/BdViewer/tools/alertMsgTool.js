@@ -3,6 +3,7 @@ function alertMsgTool(viewer) {
     this.fadeTool= new fadeInOutTool();
     this.myMessages = ['menuDinfo','menuDwarning','menuDerror','menuDsuccess']; // define the messages types		 
     this.ismenuDShow=false;
+    this.jqTool = new JQTool();
     this.init();
 }
 alertMsgTool.prototype.init = function()
@@ -12,7 +13,6 @@ alertMsgTool.prototype.init = function()
 alertMsgTool.prototype.alertMsg = function(message)
 {    
     if(this.viewer.msgTool=="humane") this.humaneMsg(message);
-    if(this.viewer.msgTool=="buble") this.bubleMsg(message);
     if(this.viewer.msgTool=="jqTooltip") this.jqToolTipMsg(message);
     if(this.viewer.msgTool=="menuD") this.menuDInfo(message);    
 }
@@ -90,8 +90,7 @@ alertMsgTool.prototype.alertPercent = function(message)
 }
 alertMsgTool.prototype.hideMsg = function()
 {
-    if(this.viewer.msgTool=="buble")   this.hideToolTip();
-    if(this.viewer.msgTool=="jqTooltip")   this.hideJQTooltip();
+    if(this.viewer.msgTool=="jqTooltip")   this.jqTool.hide();
 }
 alertMsgTool.prototype.humaneMsg = function(message)
 {
@@ -139,11 +138,11 @@ alertMsgTool.prototype.bubleMsg = function(message)
 {
     msg=this.prepareMsgString(message);
     if(msg!="")
-        this.showToolTip(event,msg);
+        this.jqTool.show(event,msg);
 }
 alertMsgTool.prototype.jqToolTipMsg = function(message)
 {
     msg=this.prepareMsgString(message);
     if(msg!="")
-        this.showJQTooltip(event,msg);
+        this.jqTool.show(event,msg);
 }

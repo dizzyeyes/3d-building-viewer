@@ -131,6 +131,10 @@ popUpMenu.prototype.getJsonDataofNewMenu = function()
                         name: 'menu_file_exportAll',
                         title: '&nbsp;&nbsp;导出所有'
                     });
+    popUpFirstlist.push({
+                        name: 'menu_reload_help',
+                        title: '&nbsp;&nbsp;说明'
+                    });
     var popUp2ndlist=new Array();
     popUp2ndlist.push({
                     name: 'menu_new_Building',
@@ -196,6 +200,9 @@ popUpMenu.prototype.getJsonDataofNewMenu = function()
                         name: 'menu_reload_reload',
                         title: '&nbsp;&nbsp;重新加载',
                         url: './'
+                    } , {
+                        name: 'menu_reload_help',
+                        title: '&nbsp;&nbsp;说明'
                     }]
                 }];
     return dataJson;

@@ -6,54 +6,49 @@ popUpMenu.prototype.processNew = function(op)
 //==============================================//
         case 'menu_file_exportFloor':
             this.exportFloor();
-            console.log(op);
         break;
         case 'menu_file_exportAll':
             this.exportAll();
-            console.log(op);
+        break;
+        case 'menu_reload_help':
+            this.viewer.showHelpMsg();
         break;
 //==============================================//
         case 'menu_new_Building':
             this.newBuilding();
-            console.log(op);
         break;
 
         case 'menu_new_Floor':
             this.newFloor();
-            console.log(op);
         break;
 
         case 'menu_new_Block':
             this.newBlock();
-            console.log(op);
         break;
         case 'menu_new_Brand':
             this.newBrand();
-            console.log(op);
         break;
         case 'menu_new_MPoint':
             this.newMPoint();
-            console.log(op);
         break;
 //==============================================//
         
         case 'menu_manage_changeFloor':
             this.changeFloor();//change to building 1, floor 2 (count from zero)
-            console.log(op);
         break;
         
         case 'menu_manage_Group':
-            console.log(op);
+            this.manageGroup();
         break;
 
         case 'menu_manage_Block':
-            console.log(op);
+            this.manageBlock();
         break;                    
         case 'menu_manage_Brand':
-            console.log(op);
+            this.manageBrand();
         break;
         case 'menu_manage_MPoint':
-            console.log(op);
+            this.manageMPoint();
         break;
 //==============================================//
     }
@@ -92,4 +87,20 @@ popUpMenu.prototype.newBrand = function()
 popUpMenu.prototype.newMPoint = function()
 {    
     this.viewer.newMPoint_Form();
+}
+popUpMenu.prototype.manageGroup = function()
+{    
+    this.viewer.manageGroup();
+}
+popUpMenu.prototype.manageBlock = function()
+{    
+    this.viewer.manageBlock();
+}
+popUpMenu.prototype.manageBrand = function()
+{    
+    this.viewer.manageBrand();
+}
+popUpMenu.prototype.manageMPoint = function()
+{    
+    this.viewer.manageMPoint();
 }

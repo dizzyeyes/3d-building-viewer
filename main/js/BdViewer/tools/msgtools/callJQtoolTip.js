@@ -1,7 +1,20 @@
-alertMsgTool.prototype.showJQTooltip = function(e,text){
+function JQTool(id) {
+    if(id==undefined) id = "JQtooltip";
+    this.init(id);
+}
+JQTool.prototype.init = function(id)
+{
+    this.div = document.createElement('div');
+    this.div.id = id;
+    this.div.className = "JQtooltip";
+    this.div.style.display = "none";
+    document.body.appendChild(this.div);    
+}
+
+JQTool.prototype.show = function(e,text){
 	if(document.all)e = event;
 	
-	var obj = document.getElementById('JQtooltip');
+	var obj = this.div;
 	obj.innerHTML = text;
 	obj.style.display = 'block';
     obj.style.background='#1e2227';
@@ -17,10 +30,9 @@ alertMsgTool.prototype.showJQTooltip = function(e,text){
         obj.style.top=e.clientY  +10 + 'px';
     else         
         obj.style.top=top+ 'px';
-}	
+}
 
-alertMsgTool.prototype.hideJQTooltip = function()
+JQTool.prototype.hide = function()
 {
-	document.getElementById('JQtooltip').style.display = 'none';
-	
+	this.div.style.display = 'none';
 }
