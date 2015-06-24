@@ -46,7 +46,7 @@ BdViewer.prototype.newFloor_json = function(dataJson)
     this.loadBlock(this.scene,block,"block");
     this.render();           
     this.params.floor = this.curBuilding.getCount()-1;
-    if(this.params.mode_edit)
+    if(this.params.mode_edit&&this.scene.getObjectByModelId('BOARD')!=undefined)
     {
         this.INTERSECTED=this.scene.getObjectByModelId("BOARD").children[0];
         this.blockparams.title="区块";
@@ -77,7 +77,7 @@ BdViewer.prototype.newBlock_json = function(dataJson)
     this.curFloor.addBlockItem(block);
     this.loadBlock(this.scene,block,"block");
     this.render();
-    if(this.params.mode_edit)
+    if(this.params.mode_edit&&this.scene.getObjectByModelId(id)!=undefined)
     {
         this.INTERSECTED = this.scene.getObjectByModelId(id).children[0];                
         this.blockparams.title="区块";
@@ -94,7 +94,7 @@ BdViewer.prototype.newBrand_json = function(dataJson)
     var modelpath = dataJson.model;
     var imagePath = dataJson.image;
     
-    var texture=0x0;
+    var texture=0xffffff;
     var rot = new THREE.Vector3(0,0,0);
     
     var scale = new THREE.Vector3(1,1,1); 
@@ -109,7 +109,7 @@ BdViewer.prototype.newBrand_json = function(dataJson)
     this.curFloor.addBrandItem(brand);
     this.loadBrand(this.scene,brand);
     this.render();
-    if(this.params.mode_edit)
+    if(this.params.mode_edit&&this.scene.getObjectByModelId(id)!=undefined)
     {
         this.INTERSECTED=this.scene.getObjectByModelId(id).children[0];  
         this.blockparams.title="标志牌";

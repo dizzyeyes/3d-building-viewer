@@ -159,7 +159,7 @@ dynamicForm.prototype.cancel = function()
             var inputItem = outputobjSelect.item(item); 
             data[inputItem.name] = inputItem.value;
         }
-        if(!(this.parent.building===data.Building/1&&this.parent.floor===data.Floor/1))
+        if(!(this.parent.building/1===data.Building/1&&this.parent.floor/1===data.Floor/1))
             this.parent.viewer.changeBdFloo(this.parent.building,this.parent.floor);
     }
     this.parent.hide();
