@@ -1,4 +1,51 @@
-function typeMeAhead(formid,inputID,uurl,obj,type)
+dynamicForm.prototype.isInTypeMeAhead = function(x,y)
+{
+    var accs = document.getElementsByClassName('acc');
+    for(var item = 0; item<accs.length;item++)
+    {
+        if(this.isInDiv(accs[item],x,y)===true) return true;
+    }
+    return false;
+}
+dynamicForm.prototype.prepareTypeMeAhead = function()
+{
+    switch(this.title)
+    {
+        case '新建分组':  
+            this.typeMeAhead('form_new','#form_input_ID','./data/json/id/',null,'groupid');
+            this.typeMeAhead('form_new','#form_input_Name','./data/json/name/',null,'groupname');
+        break;
+        case '新建建筑':
+            this.typeMeAhead('form_new','#form_input_ID','./data/json/id/',null,'buildingid');
+            this.typeMeAhead('form_new','#form_input_Name','./data/json/name/',null,'buildingname');
+        break;
+        case '更改ID':         
+        break;
+        case '新建楼层':  
+            this.typeMeAhead('form_new','#form_input_ID','./data/json/id/',null,'floorid');
+            this.typeMeAhead('form_new','#form_input_Name','./data/json/name/',null,'floorname');
+            this.typeMeAhead('form_new','#form_input_Model','./data/json/',null,'model');
+        break;
+        case '新建区块':  
+            this.typeMeAhead('form_new','#form_input_ID','./data/json/id/',null,'buildingid');
+            this.typeMeAhead('form_new','#form_input_Name','./data/json/name/',null,'buildingname');
+            this.typeMeAhead('form_new','#form_input_Model','./data/json/',null,'model');
+        break;
+        case '新建测点':  
+            this.typeMeAhead('form_new','#form_input_ID','./data/json/id/',null,'buildingid');
+            this.typeMeAhead('form_new','#form_input_Name','./data/json/name/',null,'buildingname');
+            this.typeMeAhead('form_new','#form_input_Model','./data/json/',null,'model');
+            this.typeMeAhead('form_new','#form_input_Tag','./data/json/',null,'mpointtype');
+        break;
+        case '新建标志牌':  
+            this.typeMeAhead('form_new','#form_input_ID','./data/json/id/',null,'buildingid');
+            this.typeMeAhead('form_new','#form_input_Name','./data/json/name/',null,'buildingname');
+            this.typeMeAhead('form_new','#form_input_Model','./data/json/',null,'model');
+            this.typeMeAhead('form_new','#form_input_Image','./data/json/',null,'brandimage');
+        break;
+    }
+}
+dynamicForm.prototype.typeMeAhead = function(formid,inputID,uurl,obj,type)
 {
     ////typeAhead ajax
     // mockMeAjax(uurl,obj,type);

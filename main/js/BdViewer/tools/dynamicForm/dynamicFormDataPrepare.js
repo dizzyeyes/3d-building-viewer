@@ -9,7 +9,7 @@ dynamicForm.prototype.getJsonDataofFormNew = function()
         case '更改ID':
             formFirstlist.push(obj.id);
             formFirstlist.push(obj.name);
-            formFirstlist.push(obj.info);
+            formFirstlist.push(obj.info);            
         break;
         case '新建楼层':
         case '新建区块':

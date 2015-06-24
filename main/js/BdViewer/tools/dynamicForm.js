@@ -81,6 +81,7 @@ dynamicForm.prototype.show = function(x,y){
     this.getBdFloo();
     var data=this.getJsonDataofForm();
     this.fillForm(data);
+    this.prepareTypeMeAhead();
     this.fillActioin();
     this.fadeTool.fadeIn(this.div);
     if(x==undefined)
@@ -103,7 +104,7 @@ dynamicForm.prototype.clearDiv = function (div){
  
 dynamicForm.prototype.isInForm = function(x,y)
 {
-    return this.isInDiv(this.div,x,y);
+    return this.isInDiv(this.div,x,y)||this.isInTypeMeAhead(x,y);
 }
 dynamicForm.prototype.isInDiv = function(div,x,y)
 {
