@@ -7,12 +7,34 @@ BdViewer.prototype.onWindowResize = function(){
     this.scope.renderer.setSize( window.innerWidth, window.innerHeight ); 
 } 
 
-BdViewer.prototype.onKeyUp = function(event) {       
-
+BdViewer.prototype.onKeyUp = function(event) {
+    this.controls.enabled=true;
 }
 
 BdViewer.prototype.onKeyDown = function(event) {
-
+    var keyCode = event.keyCode
+    switch(keyCode)
+    {
+        case 116://F5
+            event.preventDefault();
+            var ret = alertConfirm("是否重新载入？",windowRefresh);
+            return;
+        break;
+        case 27://ESC
+            event.preventDefault();  
+            if(this.form.div.style.display==="block") 
+            {
+                this.form.hide();
+                this.unlockMenu(true);
+            }
+            if(this.flag_addMPoint===true)
+            {
+                this.flag_addMPoint=false;
+                this.msgToolkit.alertInfo("结束添加测点");
+            }
+        break;
+    }
+    this.controls.enabled=false;
 }
 BdViewer.prototype.onMouseWheel = function( event ) {
     
@@ -120,7 +142,6 @@ BdViewer.prototype.onDocumentMouseDown = function( event ) {
             this.init_x=this.INTERSECTED.parent.position.x;
             this.init_y=this.INTERSECTED.parent.position.y;
             this.init_z=this.INTERSECTED.parent.position.z;
-            this.selectObject(this.INTERSECTED); 
             if(this.plane.position.y != this.INTERSECTED.parent.position.y)
             {
                 this.plane.position.y = this.INTERSECTED.parent.position.y;//将交平面移动交点的高度
@@ -179,12 +200,12 @@ BdViewer.prototype.onDocumentMouseDown = function( event ) {
                         var point = new BdViewer.MPoint(id,name);
                         point.copy(this.curMPoint);
                         this.curFloor.addMPointItem(point);
-                        this.loadBlock(this.scene,point,"mpoint",this.isFromLocalpoint);
+                        this.loadBlock(this.scene,point,"mpoint");
                         if(this.params.mode_edit)
                         {
                             this.INTERSECTED=this.scene.getObjectByModelId(point.id).children[0];
-                            console.log("选中测点："+this.INTERSECTED.parent.modelid);
                             this.blockparams.ID = this.INTERSECTED.parent.modelid;
+                            console.log("选中测点："+this.INTERSECTED.parent.modelid);
                         }
                     }
                     this.enable_moveBlock=this.flag_moveBlock&&!(event.button==THREE.MOUSE.RIGHT);                                
@@ -193,7 +214,8 @@ BdViewer.prototype.onDocumentMouseDown = function( event ) {
                 {
                     this.enable_moveBlock= this.flag_moveBlock&&!(event.button==THREE.MOUSE.RIGHT);
                 }
-                this.curSelected=this.INTERSECTED.parent;   
+                this.curSelected=this.INTERSECTED.parent;  
+                this.selectObject(this.INTERSECTED);  
 
                 if(event.button==THREE.MOUSE.RIGHT&&this.params.mode_edit)
                 {

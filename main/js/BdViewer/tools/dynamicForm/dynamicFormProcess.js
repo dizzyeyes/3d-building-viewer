@@ -116,12 +116,16 @@ dynamicForm.prototype.process = function()
     output.data = data;
     console.log('处理: ',output);
     var rtn = this.parent.postprocess(output);
-    if(rtn==true)
+    if(rtn===true)
     {
         this.parent.hide();
         this.parent.viewer.unlockMenu(true);
     }
-    else 
+    else if(rtn==="Floor")
+    {
+        this.parent.viewer.msgToolkit.alertError("请先添加楼层");
+    }
+    else
     {
         console.log(rtn);
         this.parent.wrongInputHighLight(rtn);

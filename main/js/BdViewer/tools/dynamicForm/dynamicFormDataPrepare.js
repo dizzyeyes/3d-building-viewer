@@ -157,6 +157,7 @@ dynamicForm.prototype.getObjects = function()
                 children: form.getList(form.viewer.bdList,form.viewer.curBuilding.id),
                 className: 'span4'
                 };
+    var floorid=(form.viewer.curFloor===null)?0:form.viewer.curFloor.id;
     dataJson.listFloor={
                 id: 'form_input_List_Floor',
                 name: 'Floor',
@@ -164,7 +165,7 @@ dynamicForm.prototype.getObjects = function()
                 holder: '请输入楼层...',
                 divName: 'select',
                 type: 'list',
-                children: form.getList(form.viewer.curBuilding,form.viewer.curFloor.id),
+                children: form.getList(form.viewer.curBuilding,floorid),
                 className: 'span4'
                 };
     return dataJson;

@@ -72,14 +72,12 @@ function BdViewer(body,xmlFileName) {
         
     this.init_x=null;this.init_y=null;this.init_z=null;
     this.curdistance=null;
-    
-    
 
     this.colorlist={0:0x0000ff,1:0x00ff00,2:0xff0000};
     this.tmpList={"":null,"温度过高":2,"温度适宜":1,"温度过低":0};
     this.popMenu = new popUpMenu('popupmenu',this);
     this.popMenuNew = new popUpMenu('popupmenu-new',this);
-    this.msgTool = null;
+    this.msgTool = null;//显示工具的实例
     this.msgToolkit = new alertMsgTool(this);
     
     this.fadeTool = new fadeInOutTool();
@@ -179,7 +177,7 @@ BdViewer.prototype.initScene=function() {
     this.transControl.viewer = this;
     
     this.keyboard = new THREEx.KeyboardState();
-    THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
+    // THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
    
     this.selectionBox = new THREE.BoxHelper();
     this.selectionBox.material.depthTest = false;

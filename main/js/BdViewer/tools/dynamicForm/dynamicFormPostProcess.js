@@ -44,6 +44,7 @@ dynamicForm.prototype.postprocess_checkvalid = function(output)
     switch(output.title)
     {
         case '新建分组':
+            if(curFloor==undefined) return 'Floor';
             if(curFloor.getGroupByName(data.name)!=null)
                 return 'name';
         break;
@@ -58,6 +59,7 @@ dynamicForm.prototype.postprocess_checkvalid = function(output)
         case '新建区块':
         case '新建测点':
         case '新建标志牌':
+            if(curFloor==undefined) return 'Floor';
             if(curFloor.getObjectById(data.id)!=null)
                 return 'id';
         break;
