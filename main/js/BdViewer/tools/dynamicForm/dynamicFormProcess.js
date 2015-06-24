@@ -90,7 +90,7 @@ dynamicForm.prototype.process = function()
         {
             if(inputItem.value=="")
             {
-                this.parent.wrongInputHighLight(inputItem.name);
+                this.parent.wrongInputHighLight([inputItem.name,"输入不能为空"]);
                 return;
             }
         }
@@ -101,7 +101,7 @@ dynamicForm.prototype.process = function()
         var inputItem = outputobjtextarea.item(item); 
         if(inputItem.value=="")
         {
-            this.parent.wrongInputHighLight(inputItem.name);
+            this.parent.wrongInputHighLight([inputItem.name,"输入不能为空"]);
             return;
         }
         data[inputItem.name] = inputItem.value;
@@ -116,12 +116,12 @@ dynamicForm.prototype.process = function()
     output.data = data;
     console.log('处理: ',output);
     var rtn = this.parent.postprocess(output);
-    if(rtn===true)
+    if(rtn[0]===true)
     {
         this.parent.hide();
         this.parent.viewer.unlockMenu(true);
     }
-    else if(rtn==="Floor")
+    else if(rtn[0]==="Floor")
     {
         this.parent.viewer.msgToolkit.alertError("请先添加楼层");
     }
@@ -131,17 +131,21 @@ dynamicForm.prototype.process = function()
         this.parent.wrongInputHighLight(rtn);
     }
 }
-dynamicForm.prototype.wrongInputHighLight = function(name)
+dynamicForm.prototype.wrongInputHighLight = function(rtn)
 {
+    var name = rtn[0];
+    var errmsg = rtn[1];
     var form = this.div.children[0];
     var inputItem = form[name];
     
     inputItem.style.border = "2px solid #ed2d11";
-    inputItem.placeholder = "输入错误";
+    inputItem.placeholder = errmsg;
     inputItem.onblur = this.defaultStyle;
     inputItem.onmouseout = this.defaultStyle;
     inputItem.onmouseover = this.prettyStyle;
     inputItem.onfocus = this.prettyStyle;
+    
+    this.viewer.msgToolkit.alertError(errmsg);
 }
 dynamicForm.prototype.cancel = function()
 {

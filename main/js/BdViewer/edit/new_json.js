@@ -11,8 +11,9 @@ BdViewer.prototype.newBuilding_json = function(dataJson)
         this.msgToolkit.alertError("./data/buildinglist.xml加载错误，不能添加建筑物");
         return;
     }
+    bd.newbuilt = true;
     this.bdList.addItem(bd);
-    this.curBuilding = bd;
+    this.curBuilding = bd;    
     this.curFloor = null;
     this.clear_init_Scene(this.scene);
     this.params.building = this.bdList.getCount()-1;

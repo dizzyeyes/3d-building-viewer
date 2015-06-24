@@ -67,12 +67,12 @@ dynamicForm.prototype.getBdFloo = function(){
     if(this.floor==="")
     {        
         if(this.viewer.curFloor!=undefined)
-            this.floor=this.viewer.curBuilding.getPosById(this.viewer.curFloor.id);
+            this.floor=this.viewer.params.floor;
     }
     if(this.building==="")
     {        
         if(this.viewer.curBuilding!=undefined)
-            this.building=this.viewer.bdList.getPosById(this.viewer.curBuilding.id);
+            this.building=this.viewer.params.building;
     }
 }
 dynamicForm.prototype.show = function(x,y){

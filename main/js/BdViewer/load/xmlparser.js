@@ -21,7 +21,7 @@ BdViewer.prototype.readBuildingList = function(filename,bdList)
 }
 BdViewer.prototype.readBuilding = function(bdList,building)
 {
-    if(building.getCount()>0)
+    if(building.getCount()>0||building.newbuilt==true)
     { 
         return building;
     }

@@ -5,7 +5,12 @@ BdViewer.prototype.changeBdFloo = function(bid,fid)
     this.curBuilding = this.bdList.getAt(this.params.building);
     if(this.curBuilding.getCount()==0)
         this.readBuilding(this.bdList,this.curBuilding); 
-    this.curFloor = this.change_Floor_Scene(this.scene,this.curBuilding,this.params.floor);
+    var rtn = this.change_Floor_Scene(this.scene,this.curBuilding,this.params.floor);
+    this.curFloor = (rtn===1||rtn===2)?null:rtn;
+    if(this.curFloor==null)
+    {        
+        this.clear_init_Scene(this.scene);
+    }
 }
 BdViewer.prototype.highlightGroup = function(scene,curFloor,groupName,highlight)
 {
