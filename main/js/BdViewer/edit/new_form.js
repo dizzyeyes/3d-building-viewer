@@ -2,6 +2,11 @@ BdViewer.prototype.unlockMenu = function(state)
 {
     this.popMenu.enabled=state;
     this.popMenuNew.enabled=state;
+    if(state==true&&this.isFromTable==true)
+    {
+        this.table.TableShow();
+        this.isFromTable = false;
+    }
 }
 BdViewer.prototype.newBuilding_Form = function()
 {    
@@ -44,5 +49,11 @@ BdViewer.prototype.changeID_Form = function(obj)
     this.unlockMenu(false);
     this.form.title = '更改ID';
     this.form.obj = obj;
+    this.form.show();    
+}
+BdViewer.prototype.newGroup_Form = function()
+{        
+    this.unlockMenu(false);
+    this.form.title = '新建分组';
     this.form.show();    
 }

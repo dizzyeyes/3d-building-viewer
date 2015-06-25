@@ -83,7 +83,7 @@ function BdViewer(body,xmlFileName) {
     this.fadeTool = new fadeInOutTool();
     
     this.form = new dynamicForm(this);
-    this.table = {};
+    this.table = new dynamicTable(this);
 }
 
 BdViewer.prototype.Init=function(){

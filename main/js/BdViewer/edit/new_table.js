@@ -1,25 +1,26 @@
 
 BdViewer.prototype.manageGroup = function()
 {    
-    this.unlockMenu(false);
-    this.table.title = '¹ÜÀí·Ö×é';
-    // this.table.show();
+    this.table.title = 'åˆ†ç»„ç®¡ç†';
+    this.table.TableShow();
 }
 BdViewer.prototype.manageBlock = function()
 {    
-    this.unlockMenu(false);
-    this.table.title = '¹ÜÀíÇø¿é';
-    // this.table.show();
+    this.table.title = 'åŒºå—ç®¡ç†';
+    this.table.TableShow();
 }
 BdViewer.prototype.manageBrand = function()
 {    
-    this.unlockMenu(false);
-    this.table.title = '¹ÜÀí±êÖ¾ÅÆ';
-    // this.table.show();
+    this.table.title = 'æ ‡å¿—ç‰Œç®¡ç†';
+    this.table.TableShow();
 }
 BdViewer.prototype.manageMPoint = function()
 {    
-    this.unlockMenu(false);
-    this.table.title = '¹ÜÀí²âµã';
-    // this.table.show();
+    this.table.title = 'æµ‹ç‚¹ç®¡ç†';
+    this.table.TableShow();
+}
+BdViewer.prototype.manageSubGroup = function(group)
+{    
+    this.table.title = group.name+'åˆ†ç»„';
+    this.table.TableShow();
 }

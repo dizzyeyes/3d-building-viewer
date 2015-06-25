@@ -48,12 +48,7 @@ dynamicForm.prototype.fillForm = function(dataJson){
         var form=this;
         $('#'+this.div.id+'').bootstrapForm({
             width: 340,
-            data: dataJson,
-            onSelect: function(name) {
-                if(name==undefined) return;
-                form.process(name);
-                form.hide();
-            }
+            data: dataJson
         });
 }
 dynamicForm.prototype.hide = function()
@@ -62,6 +57,9 @@ dynamicForm.prototype.hide = function()
     this.clearForm();
     this.init();
     this.visible=false;
+    
+    if(this.viewer.flag_addMPoint==false)
+        this.viewer.unlockMenu(true);
 }
 dynamicForm.prototype.getBdFloo = function(){    
     if(this.floor==="")

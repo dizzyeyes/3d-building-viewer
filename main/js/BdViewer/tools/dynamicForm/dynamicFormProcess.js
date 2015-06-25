@@ -119,7 +119,6 @@ dynamicForm.prototype.process = function()
     if(rtn[0]===true)
     {
         this.parent.hide();
-        this.parent.viewer.unlockMenu(true);
     }
     else if(rtn[0]==="Floor")
     {
@@ -163,5 +162,4 @@ dynamicForm.prototype.cancel = function()
             this.parent.viewer.changeBdFloo(this.parent.building,this.parent.floor);
     }
     this.parent.hide();
-    this.parent.viewer.unlockMenu(true);
 }

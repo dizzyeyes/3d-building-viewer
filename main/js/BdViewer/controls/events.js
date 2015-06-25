@@ -36,12 +36,16 @@ BdViewer.prototype.onKeyDown = function(event) {
             if(this.form.div.style.display==="block") 
             {
                 this.form.hide();
-                this.unlockMenu(true);
+            }
+            if(this.table.div.style.display==="block") 
+            {
+                this.table.TableHide();
             }
             if(this.flag_addMPoint===true)
             {
                 this.flag_addMPoint=false;
                 this.msgToolkit.alertInfo("结束添加测点");
+                this.unlockMenu(true);
             }
         break;
     }
@@ -104,7 +108,7 @@ BdViewer.prototype.onDocumentMouseMove = function( event ) {
 }
 BdViewer.prototype.onDocumentMouseDown = function( event ) {
     this.msgToolkit.hideMenuD();
-    if(this.form.isInForm(event.clientX,event.clientY))
+    if(this.form.isInForm(event.clientX,event.clientY)||this.table.isInTable(event.clientX,event.clientY))
     {                   
         this.controls.enabled=false; 
         return;
