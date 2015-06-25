@@ -385,51 +385,71 @@ dynamicTable.prototype.TableShow = function()
     this.TableLoad(dataJson);
     this.fadeTool.MoveFloatLayer(this.div.id); 
 }
+dynamicTable.prototype.duplicateId = function(submitValue)
+{
+    var ret = null;
+    switch(this.title)
+    {
+        case "例子管理":
+           ret= null;
+        break;
+        case "标志牌管理":
+        case "测点管理":
+        case "区块管理":
+           ret = this.viewer.curFloor.getObjectById(submitValue);
+        break;
+        case "分组管理":
+           ret = this.viewer.curFloor.getGroupById(submitValue);
+        break;
+    }
+    if(ret==null)
+        return false;
+    return true;
+}
 dynamicTable.prototype.asynTableData = function(row,field,submitValue)
 {
-    switch(curTable)
+    if(this.title.substr(-4)=="分组详情")
     {
-        case 'title-manage-sub':
             if(field=='id')
             {
                 var alertmsg;
-                if(params.mode_edit==true)
+                if(this.viewer.params.mode_edit==true)
                 {
-                    if(assertDuplicateId(submitValue,'curGroup',false))
+                    if(this.viewer.curGroup.getObjectById(submitValue)==null)
                     {
-                        if(!assertDuplicateId(submitValue,'curFloor',false))
+                        if(this.viewer.curFloor.getObjectById(submitValue)!=null)
                         {                        
-                            curGroup.removeById(row[field]);
-                            curGroup.addItem(submitValue);
+                            this.viewer.curGroup.removeById(row[field]);
+                            this.viewer.curGroup.addItem(submitValue);
                             return true;
                         }
                         else alertmsg="ID不存在";
                     }
-                    else alertmsg="ID不能重复";     
-                }        
-                else alertmsg="当前非编辑模式";
-                var dataJson=getJsonDataOfTable("分组详情");
-                TableLoad($sub_table,dataJson);
+                    else alertmsg="ID不能重复"; 
+                }                    
+                else alertmsg="当前非编辑模式";  
+                var dataJson = this.getJsonDataOfTable(this.title);
+                this.TableLoad(dataJson);
                 this.viewer.msgToolkit.alertError(alertmsg);
                 return false;
             }
-        break;
-        case 'title-manage':
-            if(params.mode_edit==false)
+    }
+    else
+    {
+            if(this.viewer.params.mode_edit==false)
             {
-                var dataJson=getJsonDataOfTable(this.title);
-                TableLoad($table,dataJson);
+                var dataJson = this.getJsonDataOfTable(this.title);
+                this.TableLoad(dataJson);
                 this.viewer.msgToolkit.alertError("当前非编辑模式");
                 return false;
             }
-            var title = iBase.Id("title-manage").innerHTML;
+            var title = this.title;
             if(field=='id')//改ID
             {
-                var fromWherestr=getFromWhere(title);
-                if(!assertDuplicateId(submitValue,fromWherestr,false))
+                if(this.duplicateId(submitValue)==true)
                 {
-                    var dataJson=getJsonDataOfTable(this.title);
-                    TableLoad(dataJson);
+                    var dataJson = this.getJsonDataOfTable(this.title);
+                    this.TableLoad(dataJson);
                     this.viewer.msgToolkit.alertError("ID不能重复");
                     return false;
                 }
@@ -437,20 +457,20 @@ dynamicTable.prototype.asynTableData = function(row,field,submitValue)
                 {
                     if(title=="分组管理")
                     {
-                        var obj=curFloor.getGroupById(row[field]);
-                        obj.id=submitValue;
+                        var obj = this.viewer.curFloor.getGroupById(row[field]);
+                        obj.id = submitValue;
                     }
                     else
                     {
-                        if(curFloor.changeObjectId(row[field],submitValue)==false)
+                        if(this.viewer.curFloor.changeObjectId(row[field],submitValue)==false)
                         {
-                            var dataJson=getJsonDataOfTable(this.title);
-                            TableLoad(dataJson);
+                            var dataJson = this.getJsonDataOfTable(this.title);
+                            this.TableLoad(dataJson);
                             this.viewer.msgToolkit.alertError("ID不能重复");
                             return false;
                         }
-                        var objsc=scene.getObjectByModelId(row[field]);
-                        objsc.modelid=submitValue;                        
+                        var objsc = this.viewer.scene.getObjectByModelId(row[field]);
+                        objsc.modelid = submitValue;                        
                     }
                 }
             }
@@ -458,61 +478,39 @@ dynamicTable.prototype.asynTableData = function(row,field,submitValue)
             {
                 if(title=="分组管理")
                 {
-                    var obj=curFloor.getGroupById(row['id']);
-                    obj['info']=submitValue;
-                    obj['infoShort']=submitValue.slice(0,30);
+                    var obj = this.viewer.curFloor.getGroupById(row['id']);
+                    obj['info'] = submitValue;
+                    obj['infoShort'] = submitValue.slice(0,30);
                 }
                 else
                 {
-                    var obj=curFloor.getObjectById(row['id']);
-                    obj['info']=submitValue; 
-                    obj['infoShort']=submitValue.slice(0,30); 
-                    var objsc=scene.getObjectByModelId(row['id']);
-                    objsc['info']=submitValue;                    
+                    var obj = this.viewer.curFloor.getObjectById(row['id']);
+                    obj['info'] = submitValue; 
+                    obj['infoShort'] = submitValue.slice(0,30); 
+                    var objsc = this.viewer.scene.getObjectByModelId(row['id']);
+                    objsc['info'] = submitValue;                    
                 }                
-                var dataJson=getJsonDataOfTable(this.title);
-                TableLoad(dataJson);
+                var dataJson = this.getJsonDataOfTable(this.title);
+                this.TableLoad(dataJson);
             }
             else//改其他
             {
                 if(title=="分组管理")
                 {
-                    var obj=curFloor.getGroupById(row['id']);
-                    obj[field]=submitValue;
+                    var obj = this.viewer.curFloor.getGroupById(row['id']);
+                    obj[field] = submitValue;
                 }
                 else
                 {
-                    var obj=curFloor.getObjectById(row['id']);
-                    obj[field]=submitValue; 
-                    var objsc=scene.getObjectByModelId(row['id']);
+                    var obj = this.viewer.curFloor.getObjectById(row['id']);
+                    obj[field] = submitValue; 
+                    var objsc = this.viewer.scene.getObjectByModelId(row['id']);
                     if(field=="name") field="model"+field;
-                    objsc[field]=submitValue;                    
+                    objsc[field] = submitValue;                    
                 }
             }            
-        break;
     }
     return true;
-}
-dynamicTable.prototype.getFromWhere = function(title)
-{
-    var ret;
-    switch(title)
-    {
-        case "标志牌管理":
-        case "测点管理":
-        case "区块管理":
-           ret='curFloor';
-        break;
-        case "分组管理":
-        case "例子管理":
-           ret= 'curFloor.GroupList';
-        break;
-        default:
-            if(this.title.substr(-4)=="分组详情")
-                ret = 'curGroup';
-        break;
-    } 
-    return ret;
 }
 dynamicTable.prototype.getTableDataField = function(tabletype)
 {

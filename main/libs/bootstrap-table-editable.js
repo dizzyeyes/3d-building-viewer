@@ -73,7 +73,7 @@
                         row = data[index],
                         oldValue = row[column.field];
 
-                    if(!asynTableData(row,column.field,params.submitValue)) return;
+                    if(!window.dynamictable.asynTableData(row,column.field,params.submitValue)) return;
                     row[column.field] = params.submitValue;
                     that.trigger('editable-save', column.field, row, oldValue, $(this));
                 });
