@@ -27,19 +27,19 @@ dynamicForm.prototype.prepareTypeMeAhead = function()
             this.typeMeAhead('form_new','#form_input_Model','./data/json/',null,'model');
         break;
         case '新建区块':  
-            this.typeMeAhead('form_new','#form_input_ID','./data/json/id/',null,'buildingid');
-            this.typeMeAhead('form_new','#form_input_Name','./data/json/name/',null,'buildingname');
+            this.typeMeAhead('form_new','#form_input_ID','./data/json/id/',null,'blockid');
+            this.typeMeAhead('form_new','#form_input_Name','./data/json/name/',null,'blockname');
             this.typeMeAhead('form_new','#form_input_Model','./data/json/',null,'model');
         break;
         case '新建测点':  
-            this.typeMeAhead('form_new','#form_input_ID','./data/json/id/',null,'buildingid');
-            this.typeMeAhead('form_new','#form_input_Name','./data/json/name/',null,'buildingname');
+            this.typeMeAhead('form_new','#form_input_ID','./data/json/id/',null,'mpointid');
+            this.typeMeAhead('form_new','#form_input_Name','./data/json/name/',null,'mpointname');
             this.typeMeAhead('form_new','#form_input_Model','./data/json/',null,'model');
             this.typeMeAhead('form_new','#form_input_Tag','./data/json/',null,'mpointtype');
         break;
         case '新建标志牌':  
-            this.typeMeAhead('form_new','#form_input_ID','./data/json/id/',null,'buildingid');
-            this.typeMeAhead('form_new','#form_input_Name','./data/json/name/',null,'buildingname');
+            this.typeMeAhead('form_new','#form_input_ID','./data/json/id/',null,'brandid');
+            this.typeMeAhead('form_new','#form_input_Name','./data/json/name/',null,'brandname');
             this.typeMeAhead('form_new','#form_input_Model','./data/json/',null,'model');
             this.typeMeAhead('form_new','#form_input_Image','./data/json/',null,'brandimage');
         break;
