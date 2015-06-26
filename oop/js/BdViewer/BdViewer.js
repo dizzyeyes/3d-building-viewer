@@ -89,6 +89,7 @@ function BdViewer(body,xmlFileName) {
 BdViewer.prototype.Init=function(){
     this.initBuildingDoc();
     this.initScene();
+    this.showHelpMsg();
 }
 
 BdViewer.prototype.render=function(){
