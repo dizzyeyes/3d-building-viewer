@@ -2,11 +2,10 @@
 A 3d building viewer implemented with threejs 7.1 and bootstrap 2.3.2
 
 A live demo on <a href="http://dizzyeyes.sinaapp.com">th</a>.
-[is](http://dizzyeyes.sinaapp.com).
+[is](http://dizzyeyes.github.io/3d-building-viewer).
 
 #Update
-Rearrange all the codes to an OOP manner.
-A lot of work to do!!!
+Finish re-programmed in OOP manner.
 
 # 3d-party
 1. <a href="https://github.com/wenzhixin/bootstrap-table/">bootstrap-table</a>.
