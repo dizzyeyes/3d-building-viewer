@@ -12,7 +12,7 @@ alertMsgTool.prototype.createMenuD = function(jsonData)
     div.id = jsonData.id;
     div.className = jsonData.className;
     div.parent = this;
-    div.onmouseover = this.hideMenuDCallback;
+    div.onclick = this.hideMenuDCallback;
     document.body.appendChild(div);
 }
 alertMsgTool.prototype.hideMenuDCallback = function()
