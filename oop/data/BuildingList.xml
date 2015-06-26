@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<BuildingList>
+    <Building id="BUILDING1" name="1号楼" path="./data/buildings/Building1.xml" />
+    <Building id="BUILDING2" name="2号楼" path="./data/buildings/Building2.xml" />
+    <Building id="BUILDING3" name="3号楼" path="./data/buildings/Building3.xml" />
+    <info>所有建筑物的列表</info>
+</BuildingList>

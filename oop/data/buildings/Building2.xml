@@ -1,0 +1,7 @@
+<Building id="BUILDING2" name="2号楼">
+    <Floor id="FLOOR1" name="一楼" path="./data/floors/FloorColor.xml" />
+    <Floor id="FLOOR2" name="二楼" path="./data/floors/Floor2.xml" />
+    <Floor id="FLOOR3" name="三楼" path="./data/floors/Floor3.xml" />
+    <Floor id="STANDARDFLOOR" name="标准楼层" path="./data/floors/Standardfloor.xml" />
+    <info>2号楼全部楼层信息</info>
+</Building>

@@ -1,0 +1,8 @@
+<Building id="BUILDING1" name="1号楼">
+    <Floor id="FLOOR1" name="一楼" path="./data/floors/Newfloor.xml" />
+    <Floor id="FLOOR2" name="二楼" path="./data/floors/Floor2.xml" />
+    <Floor id="FLOOR3" name="三楼" path="./data/floors/Floor3.xml" />
+    <Floor id="FLOORGUA" name="呱呱呱" path="./data/floors/FloorGua.xml" />
+    <Floor id="FLOORDEMO" name="DEMO楼层" path="./data/floors/FloorDemo.xml" />
+    <info>1号楼全部楼层信息</info>
+</Building>

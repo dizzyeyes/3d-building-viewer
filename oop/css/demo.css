@@ -1,0 +1,30 @@
+﻿body {
+	font: 11px Arial, Helvetica, sans-serif;
+	background: #ffffff url(../icons/main-bg.gif);
+	padding: 0;
+    font-family: Monospace;
+    background-color: #f0f0f0;
+    margin: 0px;
+    overflow: hidden;
+}
+
+body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: Arial, Times New Roman, '宋体' , Tahoma, Helvetica, "\5b8b\4f53", sans-serif;}
+
+.acc{
+    z-index:1000;
+    position:absolute;
+} 
+.bs-menu li.active >ul a{
+    color: #fff;
+    display: block;
+    font: bold 81.25% 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 1px 0;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    /* shadow */
+    text-shadow: 0 0 5px #444;
+}
+.bs-menu li.active >ul a:hover{
+    color:#4fff4f;
+}
