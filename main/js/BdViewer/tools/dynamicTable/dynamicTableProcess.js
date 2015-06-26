@@ -158,11 +158,25 @@ dynamicTable.prototype.TableHighLightItem = function(row,highlight)
     }
 }
 
-dynamicTable.prototype.TableAppend = function()
+dynamicTable.prototype.TableAppend = function(id)
 {
     this.unselectObjectInTable();
     if(this.title.substr(-4)=="分组详情")
+    {
+        if(id==undefined) 
             this.viewer.msgToolkit.alertInfo('拖拽物体到表格中，以实现添加');
+        else
+        {            
+            if(this.viewer.curGroup.checkById(id))
+            {
+                this.viewer.msgToolkit.alertError(id+" 已存在分组中");
+                return;
+            }
+            this.viewer.curGroup.addItem(id);
+            var addDataJson = this.fromListToJson([id]);
+            this.table.bootstrapTable('append', addDataJson);
+        }
+    }
     else
     {
         this.TableHide();
@@ -235,10 +249,7 @@ dynamicTable.prototype.TableEdit = function(row,index)
         break;
         case "分组管理":  
             this.TableHide();
-            this.viewer.curGroup = this.viewer.curFloor.getGroupById(id);
-            this.parents.push(this.title);
-            this.title = this.viewer.curGroup.name + " 分组详情";
-            this.TableShow();
+            this.viewer.manageSubGroup(id);
         break;
         case "区块管理":
         case "测点管理":   

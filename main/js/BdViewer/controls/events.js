@@ -55,9 +55,8 @@ BdViewer.prototype.onMouseWheel = function( event ) {
     
 }
 BdViewer.prototype.onDoubleClick = function(event){
-    if(this.params.mode_edit&&this.INTERSECTED )
+    if(this.params.mode_edit&&this.INTERSECTED&&!this.subGroupOpen() )
     {
-       // console.log("缩放框");
         this.transControl.attach( this.INTERSECTED );
         this.transControl.setMode( "scale" );
         this.msgToolkit.alertInfo("在空白处，鼠标左右键同时按下，<br>取消选择");
@@ -95,7 +94,17 @@ BdViewer.prototype.onDocumentMouseMove = function( event ) {
             this.planey = newplaney;
             this.planez = newplanez;
             
-            this.msgToolkit.alertMsg(this.msgToolkit.getMsg(this.INTERSECTED.parent,this.curFloor));
+            
+            
+            if(this.subGroupOpen())
+            {
+                if(this.table.isInTable(event.clientX,event.clientY))                            
+                    this.msgToolkit.alertMsg(["释放鼠标添加到分组中"]);                        
+                else this.msgToolkit.alertMsg(["拖拽到分组编辑面板中，添加到分组中"]);
+            }
+            else
+                this.msgToolkit.alertMsg(this.msgToolkit.getMsg(this.INTERSECTED.parent,this.curFloor));
+                        
             this.isBlockMoved=true;
             event.preventDefault();
         }  
@@ -261,6 +270,9 @@ BdViewer.prototype.onDocumentMouseDown = function( event ) {
         }
     }
 }
+BdViewer.prototype.subGroupOpen = function(  ) {
+    return (this.table.div.style.display=='block'&&this.table.title.substr(-4)=="分组详情");
+}
 BdViewer.prototype.onDocumentMouseUp = function( event ) {
     this.container.style.cursor="auto";
     if(this.params.mode_view)
@@ -272,7 +284,18 @@ BdViewer.prototype.onDocumentMouseUp = function( event ) {
     {
          this.enable_moveBlock=false;
     }
+    if(this.INTERSECTED&&this.subGroupOpen()&&this.isBlockMoved)
+    {
+        this.objPositionSet(this.INTERSECTED.parent,this.curFloor,this.init_x,this.init_y,this.init_z);
+        
+        if(this.table.isInTable(event.clientX,event.clientY))
+        {
+            var id = this.INTERSECTED.parent.modelid;
+            console.log("添加"+id);   
+            this.table.TableAppend(id);
+        }   
+        this.isBlockMoved=false;
+    }
     if(this.controls.enabled==false) this.controls.enabled=true;
-     //controls.enabled=!params.mode_edit;
     this.msgToolkit.hideMsg();
 }

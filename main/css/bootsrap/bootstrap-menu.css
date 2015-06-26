@@ -52,7 +52,7 @@
 
 .bs-menu a:hover {
   color: #2f2f2f;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .bs-menu span {
