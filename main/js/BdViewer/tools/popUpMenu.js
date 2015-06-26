@@ -179,22 +179,22 @@ popUpMenu.prototype.getJsonDataofNewMenu = function()
                 });   
    var dataJson= [{
                     name: 'menu_file',
-                    title: '&nbsp;&nbsp;<font color="red">文件</font>',
+                    title: '&nbsp;&nbsp;<font color="black">文件</font>',
                     icon: 'icons/Export.png',
                     children: popUpFirstlist
                 }, {
                     name: 'menu_new',
-                    title: '&nbsp;&nbsp;<font color="red">新建</font>',
+                    title: '&nbsp;&nbsp;<font color="black">新建</font>',
                     icon: 'icons/newBlock.png',
                     children: popUp2ndlist
                 }, {
                     name: 'menu_manage',
-                    title: '&nbsp;&nbsp;<font color="red">管理</font>',
+                    title: '&nbsp;&nbsp;<font color="black">管理</font>',
                     icon: 'icons/manageGroup.png',
                     children: popUp3rdlist
                 },{
                     name: 'menu_reload',
-                    title: '&nbsp;&nbsp;<font color="red">重新加载</font>',
+                    title: '&nbsp;&nbsp;<font color="black">重新加载</font>',
                     icon: 'icons/Import.png',
                     children: [{
                         name: 'menu_reload_reload',
@@ -236,12 +236,12 @@ popUpMenu.prototype.getJsonDataofPopMenu = function()
                     });
    var dataJson= [{
                     name: 'menu_edit',
-                    title: '&nbsp;&nbsp;<font color="red">编辑</font>',
+                    title: '&nbsp;&nbsp;<font color="black">编辑</font>',
                     icon: 'icons/manageBlock.png',
                     children: popUpFirstlist
                 }, {
                     name: 'menu_tmp',
-                    title: '&nbsp;&nbsp;<font color="red">设置温度</font>',
+                    title: '&nbsp;&nbsp;<font color="black">设置温度</font>',
                     icon: 'icons/manageMPoint.png',
                     children: [{
                         name: 'menu_low_tmp',
