@@ -1,7 +1,7 @@
 # 3d-buidling-viewer
 A 3d building viewer implemented with threejs 7.1 and bootstrap 2.3.2
 
-A live demo on <a href="http://dizzyeyes.sinaapp.com">th</a>.
+A live demo on <a href="http://udear.tech/3d/">th</a>.
 [is](http://dizzyeyes.github.io/3d-building-viewer).
 
 #Update
